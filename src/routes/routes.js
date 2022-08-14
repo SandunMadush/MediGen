@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../Dashboard";
+import Navbar from "../Navbar";
 import Login from "../Login";
 
 
@@ -12,7 +12,7 @@ const routes = (
     {/* Authenication Route */}
 
     <Route path="/" element={<Login/>} />
-    <Route path="/dashboard" element={<Dashboard/>} />
+    <Route path="/navbar" element={<Navbar/>} />
 
   </Routes>
 

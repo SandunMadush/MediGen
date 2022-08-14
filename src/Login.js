@@ -23,7 +23,7 @@ const Login = () => {
         username: username,
         password: password,
       });
-      navigate("/dashboard");
+      navigate("/Navbar");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
