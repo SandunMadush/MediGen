@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Grid, Paper, Avatar, TextField, Typography } from "@mui/material";
+import { Grid, Paper, Avatar, TextField } from "@mui/material";
 import LoginIcon from "@mui/icons-material/Login";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -27,6 +27,7 @@ const Login = () => {
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
+        console.log(msg);
       }
     }
   };
@@ -40,10 +41,13 @@ const Login = () => {
   const avatarStyle = { backgroundColor: "#13aabf" };
   const btnstyle = { margin: "8px 0", borderRadius: 50, width: 220 };
   const tboxstyle = { margin: "11px 0" };
-  const imgstyle = { width: 80, height: "auto", margin: "8px 0", align: 'center'};
+  const imgstyle = {
+    width: 80,
+    height: "auto",
+    margin: "8px 0",
+    align: "center",
+  };
   let navigate = useNavigate();
-
-  
 
   return (
     <Grid
@@ -66,7 +70,8 @@ const Login = () => {
             label="Username"
             variant="outlined"
             placeholder="Enter username"
-            value={username} onChange={(e) => setUsername(e.target.value)}
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             id="password"
@@ -75,7 +80,8 @@ const Login = () => {
             style={tboxstyle}
             placeholder="Enter password"
             type="password"
-            value={password} onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           <FormGroup sx={{ pl: 4 }} align="center">
@@ -97,14 +103,12 @@ const Login = () => {
         </form>
 
         <Box
-          
           sx={{
             typography: "body1",
             "& > :not(style) + :not(style)": {
               ml: 2,
             },
           }}
-          
         >
           <Link href="#">Forgot password</Link>
         </Box>

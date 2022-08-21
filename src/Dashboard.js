@@ -1,31 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import jwt_decode from "jwt-decode";
-import { BrowserRouter, Outlet, useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
-import CssBaseline from "@mui/material/CssBaseline";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { navbarStyles } from "./navbarstyles";
-import { mainNavbarItems } from "./navbarlist";
-import { Link } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import HealingIcon from "@mui/icons-material/Healing";
 import HotelIcon from "@mui/icons-material/Hotel";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import HealingIcon from "@mui/icons-material/Healing";
 import LogoutIcon from "@mui/icons-material/Logout";
-import routes from "./routes/routes";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import CssBaseline from "@mui/material/CssBaseline";
+import Drawer from "@mui/material/Drawer";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import React, { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 
 // import logo from "./images/MediGen (1).png";
 
@@ -40,20 +32,6 @@ const Dashboard = () => {
     //refreshToken();
     getUsers();
   }, []);
-
-  //  const refreshToken = async () => {
-  //     try {
-  //         const response = await axios.get('http://localhost:5000/token');
-  //         setToken(response.data.accessToken);
-  //          const decoded = jwt_decode(response.data.accessToken);
-  //          setName(decoded.name);
-  //          setExpire(decoded.exp);
-  //     } catch (error) {
-  //         if (error.response) {
-  //              navigate("/");
-  //         }
-  //     }
-  //  }
 
   const axiosJWT = axios.create();
   const drawerWidth = 240;
@@ -135,13 +113,6 @@ const Dashboard = () => {
     <div className="container mt-5">
       <h1>Welcome Back: {name}</h1>
       <table className="table is-striped is-fullwidth">
-        {/* <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                    </tr>
-                </thead> */}
         <tbody>
           {users.map((user, index) => (
             <tr key={user.id}>
@@ -209,34 +180,6 @@ const Dashboard = () => {
         </Box>
       </Box>
     </div>
-
-    /* <Drawer
-          sx={navbarStyles.drawer}
-         variant="permanent"
-         anchor="left"
-      >
-       <Toolbar />
-        <Divider />
-       <List>
-          {mainNavbarItems.map((item, index) => (
-           <ListItem
-                button
-                key={item.id}
-                onClick={() => navigate(item.route)}
-            >
-             <ListItemIcon
-               sx={navbarStyles.icons}
-             >
-                {item.icon}
-             </ListItemIcon>
-              <ListItemText
-               sx={navbarStyles.text}
-               primary={item.label}
-             />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer> */
   );
 };
 
