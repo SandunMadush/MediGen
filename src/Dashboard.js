@@ -50,19 +50,25 @@ const Dashboard = () => {
       path: "/dashboard/ward",
     },
     {
-      id: "dashboard",
+      id: "clinic",
       text: "Clinic",
       icon: <LocalHospitalIcon />,
       path: "/dashboard/clinic",
     },
     {
-      id: "dashboard",
+      id: "theatre",
+      text: "Theatre",
+      icon: <HotelIcon />,
+      path: "/dashboard/theatre",
+    },
+    {
+      id: "endoscopy",
       text: "Endoscopy",
       icon: <HealingIcon />,
       path: "/dashboard/endoscopy",
     },
     {
-      id: "dashboard",
+      id: "logout",
       text: "Logout",
       icon: <LogoutIcon />,
       path: "/dashboard/logout",
@@ -93,6 +99,18 @@ const Dashboard = () => {
         break;
       case "ward":
         navigate("/dashboard/ward");
+        break;
+      case "clinic":
+        navigate("/dashboard/clinic");
+        break;
+      case "theatre":
+        navigate("/dashboard/theatre");
+        break;
+      case "endoscopy":
+        navigate("/dashboard/endoscopy");
+        break;
+      case "logout":
+        navigate("/dashboard/logout");
         break;
       default:
         navigate("/dashboard");
@@ -155,7 +173,7 @@ const Dashboard = () => {
 
           <List>
             {pages.map((item, index) => {
-              const {id, text, icon, path } = item;
+              const { id, text, icon, path } = item;
               return (
                 <ListItem
                   button
@@ -179,6 +197,7 @@ const Dashboard = () => {
           <Outlet />
         </Box>
       </Box>
+      return <div>This is the endoscopy page</div>;
     </div>
   );
 };
