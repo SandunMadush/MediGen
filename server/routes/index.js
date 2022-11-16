@@ -1,4 +1,4 @@
-import { Login } from "@mui/icons-material";
+import { Login } from "../controllers/Auth.js";
 import express from "express";
 import { getUsers } from "../controllers/Users.js";
 import { refreshToken } from "../controllers/RefreshToken.js";

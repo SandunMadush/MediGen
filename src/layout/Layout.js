@@ -23,6 +23,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import logo from "../../assets/kdu.png";
 
 const drawerWidth = 240;
 
@@ -168,7 +169,7 @@ export default function PersistentDrawerLeft() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        Persistent drawer
+                        MEDIGEN
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -186,6 +187,9 @@ export default function PersistentDrawerLeft() {
                 open={open}
             >
                 <DrawerHeader>
+                    <IconButton onClick={handleDrawerClose}>
+                        <img src={logo} alt="" />
+                    </IconButton>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
