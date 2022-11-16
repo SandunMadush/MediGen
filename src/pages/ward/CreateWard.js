@@ -1,11 +1,18 @@
 import * as React from 'react';
 
 import Button from '@mui/material/Button';
+import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import dayjs from 'dayjs';
 
 export default function CreateWardForm() {
+  const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -13,6 +20,13 @@ export default function CreateWardForm() {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
+          <DesktopDatePicker
+            label="Date desktop"
+            inputFormat="MM/DD/YYYY"
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          />
           <TextField
             required
             id="date"
