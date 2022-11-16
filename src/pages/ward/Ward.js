@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { DataTable } from '../../shared/Datatable';
+import CreateWardForm from './CreateWard';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -44,6 +45,7 @@ const rows = [
 export default function Ward() {
   return (
     <div>
+      <CreateWardForm/>
       <DataTable rows={rows} columns={columns} />
     </div>
   );
