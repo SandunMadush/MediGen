@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { DataGrid } from '@mui/x-data-grid';
+import { DataTable } from '../../shared/Datatable';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -40,28 +40,11 @@ const rows = [
   { id: 10, lastName: 'Lestrange', firstName: 'Bellatrix', age: 56, bht: 'BN/KJ/16/74', date: '14/05/2022', surgery: 'PLI', surgeon: 'Dr. KDW Wijenayake' }
 ];
 
-const DataTable = () => {
-  return (
-    <div>
-      <h3> Ward Details </h3>
-      <div style={{ height: 500, width: '100%', display: "flex" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={50}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
-      </div>
-    </div>
-  );
-}
-
 
 export default function Ward() {
   return (
     <div>
-      <DataTable />
+      <DataTable rows={rows} columns={columns} />
     </div>
   );
 }
