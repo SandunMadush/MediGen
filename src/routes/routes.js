@@ -1,13 +1,13 @@
-import React from "react";
-
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "../Dashboard";
-import Login from "../Login";
-import Clinic from "../Clinic";
-import Theatre from "../Theatre";
-import Ward from "../Ward";
-import Endoscopy from "../Endoscopy";
+
+import Clinic from "../pages/clinic/Clinic";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Endoscopy from "../pages/endoscopy/Endoscopy";
+import Login from "../pages/login/Login";
 import { Logout } from "@mui/icons-material";
+import React from "react";
+import Theatre from "../pages/theatre/Theatre";
+import Ward from "../pages/ward/Ward";
 
 const routes = (
   <Routes>

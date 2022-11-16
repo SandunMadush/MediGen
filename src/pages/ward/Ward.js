@@ -1,6 +1,7 @@
 import * as React from 'react';
+
 import { DataGrid } from '@mui/x-data-grid';
-import { Typography } from '@mui/material';
+
 const columns = [
   { field: 'id', headerName: 'ID', width: 70 },
   { field: 'firstName', headerName: 'First name', width: 130 },
@@ -21,9 +22,9 @@ const columns = [
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
   { field: 'bht', headerName: 'BHT', type: 'string', width: 200, sortable: false },
-  { field: 'date', headerName: 'Date', type: 'string', width: 100},
-  { field: 'surgery', headerName: 'Surgery', type: 'string', width: 75},
-  { field: 'surgeon', headerName: 'Con Surgeon', type: 'string', width: 200}
+  { field: 'date', headerName: 'Date', type: 'string', width: 100 },
+  { field: 'surgery', headerName: 'Surgery', type: 'string', width: 200 },
+  { field: 'surgeon', headerName: 'Con Surgeon', type: 'string', width: 200 }
 ];
 
 const rows = [
@@ -39,21 +40,28 @@ const rows = [
   { id: 10, lastName: 'Lestrange', firstName: 'Bellatrix', age: 56, bht: 'BN/KJ/16/74', date: '14/05/2022', surgery: 'PLI', surgeon: 'Dr. KDW Wijenayake' }
 ];
 
-function DataTable() {
+const DataTable = () => {
   return (
     <div>
       <h3> Ward Details </h3>
-    <div style={{ height: 500, width: '100%', display: "flex" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={50}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-      />
-    </div>
+      <div style={{ height: 500, width: '100%', display: "flex" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={50}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 }
 
-export default DataTable;
+
+export default function Ward() {
+  return (
+    <div>
+      <DataTable />
+    </div>
+  );
+}

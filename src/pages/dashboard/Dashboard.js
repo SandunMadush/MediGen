@@ -1,43 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import HealingIcon from "@mui/icons-material/Healing";
-import HotelIcon from "@mui/icons-material/Hotel";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import LogoutIcon from "@mui/icons-material/Logout";
+
+import { Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import Drawer from "@mui/material/Drawer";
+import HealingIcon from "@mui/icons-material/Healing";
+import HotelIcon from "@mui/icons-material/Hotel";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import { DataGrid } from '@mui/x-data-grid';
-// import logo from "./images/MediGen (1).png";
-
-const columns = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'surgeon', headerName: 'Con Surgeon', type: 'string', width: 200}
-];
-
-const rows = [
-  { id: 1,  surgeon: 'Dr. A Fernando' },
-  { id: 2,  surgeon: 'Dr. KDW Wijenayake' },
-  { id: 3,  surgeon: 'Dr. A Fernando' },
-  { id: 4,  surgeon: 'Dr. KDW Wijenayake' },
-  { id: 5,  surgeon: 'Dr. A Fernando' },
-  { id: 6,  surgeon: 'Dr. A Fernando' },
-  { id: 7,  surgeon: 'Dr. A Fernando' },
-  { id: 8,  surgeon: 'Dr. KDW Wijenayake' },
-  { id: 9,  surgeon: 'Dr. A Fernando' },
-  { id: 10, surgeon: 'Dr. KDW Wijenayake' }
-];
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -147,10 +129,10 @@ const Dashboard = () => {
   };
 
   return (
-    
+
     <div className="container mt-5">
 
-       <h1>Welcome Back: {name}</h1>
+      <h1>Welcome Back: {name}</h1>
       <table className="table is-striped is-fullwidth">
         <tbody>
           {users.map((user, index) => (
@@ -161,7 +143,7 @@ const Dashboard = () => {
             </tr>
           ))}
         </tbody>
-      </table> 
+      </table>
       <div>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
@@ -214,18 +196,6 @@ const Dashboard = () => {
               </List>
             </Drawer>
           </div>
-    <div>
-     <h3> Surgeon Details </h3>
-     <div style={{ height: 500, width: '210%', display: "flex",  }}>
-     <DataGrid
-         rows={rows}
-         columns={columns}
-         pageSize={50}
-         rowsPerPageOptions={[5]}
-        checkboxSelection />
-      </div>
-     </div>
-     
           <Box
             component="main"
             sx={{ flexGrow: 2, bgcolor: "background.default", p: 3 }}
@@ -235,16 +205,8 @@ const Dashboard = () => {
         </Box>
       </div>
     </div>
-
   );
-  
-  
 };
-
-
-    
-
-
 
 
 export default Dashboard;
