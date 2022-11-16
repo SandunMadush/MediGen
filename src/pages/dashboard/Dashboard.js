@@ -1,23 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import HealingIcon from "@mui/icons-material/Healing";
-import HotelIcon from "@mui/icons-material/Hotel";
-import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
-import LogoutIcon from "@mui/icons-material/Logout";
+
+import { Outlet, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import Drawer from "@mui/material/Drawer";
+import HealingIcon from "@mui/icons-material/Healing";
+import HotelIcon from "@mui/icons-material/Hotel";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import LogoutIcon from "@mui/icons-material/Logout";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
 
 // import logo from "./images/MediGen (1).png";
 

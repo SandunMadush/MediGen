@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
@@ -21,9 +22,9 @@ const columns = [
       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
   },
   { field: 'bht', headerName: 'BHT', type: 'string', width: 200, sortable: false },
-  { field: 'date', headerName: 'Date', type: 'string', width: 100},
-  { field: 'surgery', headerName: 'Surgery', type: 'string', width: 200},
-  { field: 'surgeon', headerName: 'Con Surgeon', type: 'string', width: 200}
+  { field: 'date', headerName: 'Date', type: 'string', width: 100 },
+  { field: 'surgery', headerName: 'Surgery', type: 'string', width: 200 },
+  { field: 'surgeon', headerName: 'Con Surgeon', type: 'string', width: 200 }
 ];
 
 const rows = [
@@ -39,7 +40,7 @@ const rows = [
   { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65, bht: '', surgery: '', surgeon: '' }
 ];
 
-export default function DataTable() {
+const DataTable = () => {
   return (
     <div style={{ height: 500, width: '100%' }}>
       <DataGrid
@@ -49,6 +50,15 @@ export default function DataTable() {
         rowsPerPageOptions={[5]}
         checkboxSelection
       />
+    </div>
+  );
+}
+
+
+export default function Ward() {
+  return (
+    <div>
+      <DataTable />
     </div>
   );
 }
