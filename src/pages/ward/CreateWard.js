@@ -1,11 +1,9 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Stack from '@mui/material/Stack';
+
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 
 export default function CreateWardForm() {
   return (
@@ -69,7 +67,7 @@ export default function CreateWardForm() {
             variant="standard"
           />
         </Grid>
-        
+
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -81,9 +79,9 @@ export default function CreateWardForm() {
             variant="standard"
           />
         </Grid>
-        
+
         <Grid item xs={12}>
-        <Button variant="contained">Submit</Button>
+          <Button variant="contained">Submit</Button>
         </Grid>
       </Grid>
     </React.Fragment>

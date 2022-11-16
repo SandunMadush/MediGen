@@ -5,7 +5,6 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import Endoscopy from "../pages/endoscopy/Endoscopy";
 import Layout from "../layout/Layout";
 import Login from "../pages/login/Login";
-import { Logout } from "@mui/icons-material";
 import React from "react";
 import Theatre from "../pages/theatre/Theatre";
 import Ward from "../pages/ward/Ward";
@@ -22,7 +21,6 @@ const routes = (
       <Route path="/user/theatre" element={<Theatre />} />
       <Route path="/user/ward" element={<Ward />} />
       <Route path="/user/endoscopy" element={<Endoscopy />} />
-      <Route path="/user/logout" element={<Logout />} />
     </Route>
   </Routes>
 );
