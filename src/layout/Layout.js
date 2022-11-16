@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { Avatar, Grid } from '@mui/material';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 
@@ -23,7 +24,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import logo from "../../assets/kdu.png";
+import logo from '../assets/kdu.png';
 
 const drawerWidth = 240;
 
@@ -186,14 +187,24 @@ export default function PersistentDrawerLeft() {
                 anchor="left"
                 open={open}
             >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        <img src={logo} alt="" />
-                    </IconButton>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </DrawerHeader>
+                <Toolbar>
+                    <Grid container spacing={2} alignItems="center">
+                        <Grid item>
+                            <Avatar alt="logo" src={logo} />
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="h6" noWrap component="div">
+                                UHKDU
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                    <DrawerHeader>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+                        </IconButton>
+                    </DrawerHeader>
+                </Toolbar>
+
                 <Divider />
                 <List>
                     {pages.map((item, index) => {
