@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
-export default function CreateWardForm() {
+export default function CreateEndoscopyForm() {
   const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -40,6 +40,17 @@ export default function CreateWardForm() {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              id="bht_number"
+              name="bht_number"
+              label="BHT Number"
+              fullWidth
+              autoComplete="given-name"
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              required
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -62,32 +73,34 @@ export default function CreateWardForm() {
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="gender"
-              name="gender"
-              label="Gender"
+              id="procedure"
+              name="procedure"
+              label="Procedure"
               fullWidth
               autoComplete="given-name"
               variant="outlined"
             />
           </Grid>
+          
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="bht_number"
-              name="bht_number"
-              label="BHT Number"
+              id="phone_number"
+              name="phone_number"
+              label="Phone Number"
               fullWidth
               autoComplete="given-name"
               variant="outlined"
             />
           </Grid>
+          
 
           <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="con_surgeon"
-              name="con_surgeon"
-              label="Conducted Surgeon"
+              id="consultant"
+              name="consultant"
+              label="Consultant"
               fullWidth
               autoComplete="shipping address-level2"
               variant="outlined"
