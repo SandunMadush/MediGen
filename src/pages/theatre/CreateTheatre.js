@@ -30,13 +30,12 @@ export default function CreateTheatreForm() {
               id="date"
               name="date"
               label="Date"
-              fullWidth
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
               value={value}
               onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => <TextField {...params} fullWidth />}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
