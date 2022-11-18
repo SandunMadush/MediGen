@@ -6,13 +6,9 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
-export default function CreateClinicFVForm() {
+export default function CreateClinicForm() {
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -22,7 +18,7 @@ export default function CreateClinicFVForm() {
     <React.Fragment>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-        
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
@@ -30,13 +26,13 @@ export default function CreateClinicFVForm() {
               id="date"
               name="date"
               label="Date"
-             
+
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
               value={value}
               onChange={handleChange}
-              renderInput={(params) => <TextField {...params}  fullWidth/>}
+              renderInput={(params) => <TextField {...params} fullWidth />}
             />
           </Grid>
           <Grid item xs={12} sm={6}>

@@ -1,14 +1,14 @@
-import React from "react";
 import { Card, CardContent } from '@mui/material';
 
-import CreateClinicFVForm from './CreateClinicFV';
+import CreateClinicForm from './CreateClinic';
+import React from "react";
 
 const Clinic = () => {
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          < CreateClinicFVForm />
+          < CreateClinicForm />
         </CardContent>
       </Card>
     </div>
