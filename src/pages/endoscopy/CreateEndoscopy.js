@@ -6,7 +6,6 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Grid from '@mui/material/Grid';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
 
 export default function CreateEndoscopyForm() {
@@ -18,7 +17,7 @@ export default function CreateEndoscopyForm() {
   return (
     <React.Fragment>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        
+
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
@@ -26,13 +25,13 @@ export default function CreateEndoscopyForm() {
               id="date"
               name="date"
               label="Date"
-              
+
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
               value={value}
               onChange={handleChange}
-              renderInput={(params) => <TextField {...params} fullWidth/>}
+              renderInput={(params) => <TextField {...params} fullWidth />}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -79,7 +78,7 @@ export default function CreateEndoscopyForm() {
               variant="outlined"
             />
           </Grid>
-          
+
           <Grid item xs={12} sm={6}>
             <TextField
               required
@@ -91,7 +90,7 @@ export default function CreateEndoscopyForm() {
               variant="outlined"
             />
           </Grid>
-          
+
 
           <Grid item xs={12} sm={6}>
             <TextField

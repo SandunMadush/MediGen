@@ -24,6 +24,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import axios from 'axios';
 import logo from '../assets/kdu.png';
 
 const drawerWidth = 240;
@@ -77,6 +78,14 @@ export default function PersistentDrawerLeft() {
 
     let navigate = useNavigate();
 
+    const Logout = async () => {
+        try {
+            await axios.delete('http://localhost:5000/logout');
+            navigate("/");
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const pages = [
         {
@@ -135,7 +144,7 @@ export default function PersistentDrawerLeft() {
                 navigate("/user/endoscopy");
                 break;
             case "logout":
-                navigate("/user/logout");
+                Logout();
                 break;
             default:
                 navigate("/dashboard");
