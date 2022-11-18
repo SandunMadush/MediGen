@@ -8,6 +8,11 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function CreateTheatreForm() {
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
@@ -18,11 +23,6 @@ export default function CreateTheatreForm() {
   return (
     <React.Fragment>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <div>
-          <Typography variant="h7" gutterBottom>
-            Please enter the details-
-          </Typography>
-        </div>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
