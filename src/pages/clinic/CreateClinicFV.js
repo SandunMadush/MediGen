@@ -8,6 +8,9 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import dayjs from "dayjs";
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 export default function CreateClinicFVForm() {
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
@@ -18,9 +21,8 @@ export default function CreateClinicFVForm() {
   return (
     <React.Fragment>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Typography variant="h7" gutterBottom>
-          Please enter the details for the First visit -
-        </Typography>
+
+        
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
@@ -28,13 +30,13 @@ export default function CreateClinicFVForm() {
               id="date"
               name="date"
               label="Date"
-              fullWidth
+             
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
               value={value}
               onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => <TextField {...params}  fullWidth/>}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -81,7 +83,6 @@ export default function CreateClinicFVForm() {
               variant="outlined"
             />
           </Grid>
-
           <Grid item xs={12}>
             <Button variant="contained">Submit</Button>
           </Grid>
