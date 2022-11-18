@@ -1,9 +1,11 @@
 import * as React from "react";
 
-import { Card, CardContent } from "@mui/material";
+import { Avatar, Card, CardContent, CardHeader, IconButton } from '@mui/material';
 
 import CreateWardForm from "./CreateWard";
 import { DataTable } from "../../shared/Datatable";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { red } from "@mui/material/colors";
 
 const columns = [
   { field: "date", headerName: "Date", type: "string", width: 100 },
@@ -15,7 +17,7 @@ const columns = [
     type: "number",
     width: 90,
   },
-  
+
   {
     field: "bht",
     headerName: "BHT Number",
@@ -23,7 +25,7 @@ const columns = [
     width: 200,
     sortable: false,
   },
-  
+
   { field: "gender", headerName: "Gender", type: "string", width: 200 },
   { field: "surgeon", headerName: "Con Surgeon", type: "string", width: 200 },
 ];
@@ -135,6 +137,20 @@ export default function Ward() {
   return (
     <div>
       <Card sx={{ minWidth: 275 }}>
+        <CardHeader
+          avatar={
+            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              W
+            </Avatar>
+          }
+          action={
+            <IconButton aria-label="settings">
+              <MoreVertIcon />
+            </IconButton>
+          }
+          title="UHKDU Theatre"
+          subheader="Create Theatre"
+        />
         <CardContent>
           <CreateWardForm />
         </CardContent>

@@ -6,14 +6,53 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 import Grid from '@mui/material/Grid';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 
 export default function CreateWardForm() {
-  const [value, setValue] = React.useState(dayjs('2014-08-18T21:11:54'));
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const [token, setToken] = useState('');
+  const [name, setName] = useState('');
+  const [expire, setExpire] = useState('');
+  const [ward, setWard] = useState('');
+
+  const [date, setDate] = React.useState(dayjs('2014-08-18T21:11:54'));
+  const [patientName, setPatientName] = React.useState('');
+  const [bhtNumber, setBhtNumber] = React.useState('');
+  const [age, setAge] = React.useState('');
+  const [gender, setGender] = React.useState('');
+  const [conSurgeon, setConSurgeon] = React.useState('');
+
+
+  const handleChange = (id, value) => {
+    switch (id) {
+      case 'date':
+        setDate(value);
+        break;
+      case 'patient_name':
+        setPatientName(value.target.value);
+        break;
+      case 'bht_number':
+        setBhtNumber(value.target.value);
+        break;
+      case 'age':
+        setAge(value.target.value);
+        break;
+      case 'gender':
+        setGender(value.target.value);
+        break;
+      case 'con_surgeon':
+        setConSurgeon(value.target.value);
+        break;
+      default:
+        break;
+    }
   };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
+
 
   return (
     <React.Fragment>
@@ -25,13 +64,12 @@ export default function CreateWardForm() {
               id="date"
               name="date"
               label="Date"
-             
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={value}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params}  fullWidth/>}
+              value={date}
+              onChange={(event) => handleChange('date', event)}
+              renderInput={(params) => <TextField {...params} fullWidth />}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -41,6 +79,8 @@ export default function CreateWardForm() {
               name="patient_name"
               label="Patient Name"
               fullWidth
+              value={patientName}
+              onChange={(event) => handleChange('patient_name', event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -52,6 +92,8 @@ export default function CreateWardForm() {
               name="age"
               label="Age"
               fullWidth
+              value={age}
+              onChange={(event) => handleChange('age', event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -63,6 +105,8 @@ export default function CreateWardForm() {
               name="gender"
               label="Gender"
               fullWidth
+              value={gender}
+              onChange={(event) => handleChange('gender', event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -74,6 +118,8 @@ export default function CreateWardForm() {
               name="bht_number"
               label="BHT Number"
               fullWidth
+              value={bhtNumber}
+              onChange={(event) => handleChange('bht_number', event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -86,13 +132,15 @@ export default function CreateWardForm() {
               name="con_surgeon"
               label="Conducted Surgeon"
               fullWidth
+              value={conSurgeon}
+              onChange={(event) => handleChange('con_surgeon', event)}
               autoComplete="shipping address-level2"
               variant="outlined"
             />
           </Grid>
 
-          <Grid item xs={12}>
-            <Button variant="contained">Submit</Button>
+          <Grid item xs={12} >
+            <Button variant="contained" onClick={(event) => handleSubmit(event)}>Submit</Button>
           </Grid>
         </Grid>
       </LocalizationProvider>
