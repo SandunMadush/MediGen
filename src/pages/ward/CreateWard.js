@@ -18,9 +18,6 @@ export default function CreateWardForm() {
   return (
     <React.Fragment>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <Typography variant="h7" gutterBottom>
-          Please enter the details-
-        </Typography>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
@@ -28,13 +25,13 @@ export default function CreateWardForm() {
               id="date"
               name="date"
               label="Date"
-              fullWidth
+             
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
               value={value}
               onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+              renderInput={(params) => <TextField {...params}  fullWidth/>}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
