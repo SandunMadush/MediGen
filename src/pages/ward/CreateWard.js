@@ -8,14 +8,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
 
-export default function CreateWardForm() {
+export default function CreateWardForm(props) {
 
   const [date, setDate] = React.useState(dayjs('2014-08-18T21:11:54'));
-  const [patientName, setPatientName] = React.useState('');
-  const [bhtNumber, setBhtNumber] = React.useState('');
-  const [age, setAge] = React.useState('');
-  const [gender, setGender] = React.useState('');
-  const [conSurgeon, setConSurgeon] = React.useState('');
+  const [patientName, setPatientName] = React.useState(props.patient_name);
+  const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
+  const [age, setAge] = React.useState(props.age);
+  const [gender, setGender] = React.useState(props.gender);
+  const [conSurgeon, setConSurgeon] = React.useState(props.con_surgeon);
 
 
   const handleChange = (id, value) => {
@@ -152,7 +152,7 @@ export default function CreateWardForm() {
           </Grid>
 
           <Grid item xs={12} >
-            <Button variant="contained" onClick={(event) => handleSubmit(event)}>Submit</Button>
+            <Button variant="contained" onClick={(event) => handleSubmit(event)}>Create</Button>
           </Grid>
         </Grid>
       </LocalizationProvider>
