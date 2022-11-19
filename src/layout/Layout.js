@@ -1,7 +1,9 @@
+import './Layout.scss';
+
 import * as React from 'react';
 
 import { Avatar, Grid } from '@mui/material';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
@@ -75,7 +77,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
-
+    let location = useLocation();
     let navigate = useNavigate();
 
     const Logout = async () => {
@@ -125,6 +127,7 @@ export default function PersistentDrawerLeft() {
             path: "/user/logout",
         },
     ];
+
 
     const handleItemClick = (event) => {
         switch (event.currentTarget.id) {
@@ -225,6 +228,8 @@ export default function PersistentDrawerLeft() {
                                 to={path}
                                 id={id}
                                 onClick={handleItemClick}
+                                component={Link}
+                                selected={path === location.pathname}
                             >
                                 {icon && <ListItemIcon>{icon}</ListItemIcon>}
                                 <ListItemText primary={text} />
