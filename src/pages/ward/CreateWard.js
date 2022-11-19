@@ -7,13 +7,8 @@ import Grid from '@mui/material/Grid';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import TextField from '@mui/material/TextField';
 import dayjs from 'dayjs';
-import { useState } from 'react';
 
 export default function CreateWardForm() {
-  const [token, setToken] = useState('');
-  const [name, setName] = useState('');
-  const [expire, setExpire] = useState('');
-  const [ward, setWard] = useState('');
 
   const [date, setDate] = React.useState(dayjs('2014-08-18T21:11:54'));
   const [patientName, setPatientName] = React.useState('');
@@ -48,10 +43,26 @@ export default function CreateWardForm() {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    createWard(e);
   };
+
+  const createWard = async (e) => {
+    e.preventDefault();
+    const ward = { date, patient_name: patientName, bht_no: bhtNumber, age, gender, con_surgeon: conSurgeon };
+    const res = await fetch('http://localhost:5000/wards', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(ward),
+    });
+    const data = await res.json();
+    if (data) {
+      alert('Ward created successfully');
+    }
+  }
 
 
   return (
@@ -91,6 +102,7 @@ export default function CreateWardForm() {
               id="age"
               name="age"
               label="Age"
+              type="number"
               fullWidth
               value={age}
               onChange={(event) => handleChange('age', event)}

@@ -1,3 +1,5 @@
+import './Datatable.scss';
+
 import { DataGrid } from "@mui/x-data-grid";
 
 export const DataTable = ({ rows, columns }) => {

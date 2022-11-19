@@ -2,16 +2,13 @@ import * as React from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-
-const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 export default function CreateTheatreForm() {
   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
@@ -139,11 +136,11 @@ export default function CreateTheatreForm() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-          <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
-          <FormControlLabel control={<Checkbox defaultChecked />} label="RAT" />
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Fasting" />
-          <FormControlLabel control={<Checkbox defaultChecked />} label="Echo" />
-          <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
+            <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
+            <FormControlLabel control={<Checkbox defaultChecked />} label="RAT" />
+            <FormControlLabel control={<Checkbox defaultChecked />} label="Fasting" />
+            <FormControlLabel control={<Checkbox defaultChecked />} label="Echo" />
+            <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
           </Grid>
 
           <Grid item xs={12}>
