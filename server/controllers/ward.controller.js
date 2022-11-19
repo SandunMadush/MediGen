@@ -39,3 +39,16 @@ export const updateWard = async (req, res) => {
         console.log(error);
     }
 }
+
+export const deleteWard = async (req, res) => {
+    try {
+        const wards = await Ward.destroy({
+            where: {
+                bht_no: req.params.id
+            }
+        });
+        res.json(wards);
+    } catch (error) {
+        console.log(error);
+    }
+}
