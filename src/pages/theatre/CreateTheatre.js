@@ -11,9 +11,19 @@ import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
 
 export default function CreateTheatreForm() {
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const [date, setDate] = React.useState(dayjs("2014-08-18T21:11:54"));
+  const [isPcr, setIsPcr] = React.useState('');
+
+
+  const handleChange = (id, value) => {
+    switch (id) {
+      case 'isPcr':
+        setIsPcr(!value.target.checked);
+        break;
+      default:
+        break;
+    }
+    console.log(isPcr);
   };
 
   return (
@@ -29,7 +39,7 @@ export default function CreateTheatreForm() {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={value}
+              value={date}
               onChange={handleChange}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />
@@ -136,7 +146,8 @@ export default function CreateTheatreForm() {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
+            <FormControlLabel control={<Checkbox defaultChecked onChange={(e) => handleChange('isPcr', e)}
+            />} label="PCR" />
             <FormControlLabel control={<Checkbox defaultChecked />} label="RAT" />
             <FormControlLabel control={<Checkbox defaultChecked />} label="Fasting" />
             <FormControlLabel control={<Checkbox defaultChecked />} label="Echo" />
