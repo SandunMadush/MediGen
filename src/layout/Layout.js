@@ -205,8 +205,8 @@ export default function PersistentDrawerLeft() {
                             <Avatar alt="logo" src={logo} />
                         </Grid>
                         <Grid item>
-                            <Typography variant="h6" noWrap component="div">
-                                UHKDU
+                            <Typography variant="p" noWrap component="div">
+                                MEDIGEN
                             </Typography>
                         </Grid>
                     </Grid>
