@@ -12,7 +12,7 @@ const Theatre = () => {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              W
+              T
             </Avatar>
           }
           action={
@@ -20,8 +20,8 @@ const Theatre = () => {
               <MoreVertIcon />
             </IconButton>
           }
-          title="UHKDU Theatre"
-          subheader="Create Theatre"
+          title="UHKDU Theatre Details"
+          subheader="Create Theatre-"
         />
         <CardContent>
           <CreateTheatreForm />

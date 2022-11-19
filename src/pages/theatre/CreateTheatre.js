@@ -138,7 +138,13 @@ export default function CreateTheatreForm() {
               variant="outlined"
             />
           </Grid>
-
+          <Grid item xs={12} sm={6}>
+          <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="RAT" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Fasting" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="Echo" />
+          <FormControlLabel control={<Checkbox defaultChecked />} label="PCR" />
+          </Grid>
 
           <Grid item xs={12}>
             <Button variant="contained">Submit</Button>
