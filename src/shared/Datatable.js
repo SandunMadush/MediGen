@@ -12,7 +12,6 @@ export const DataTable = ({ rows, columns }) => {
                     columns={columns}
                     pageSize={50}
                     rowsPerPageOptions={[5]}
-                    checkboxSelection
                 />
             </div>
         </div>
