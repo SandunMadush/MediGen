@@ -182,7 +182,7 @@ export default function PersistentDrawerLeft() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        MEDIGEN
+                        {location.pathname === "/user/" ? "DASHBOARD" : location.pathname.split("/")[2].toUpperCase()}
                     </Typography>
                 </Toolbar>
             </AppBar>
