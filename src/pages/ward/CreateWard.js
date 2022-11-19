@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 
 export default function CreateWardForm(props) {
 
-  const [date, setDate] = React.useState(dayjs('2014-08-18T21:11:54'));
+  const [date, setDate] = React.useState(dayjs(new Date()));
   const [patientName, setPatientName] = React.useState(props.patient_name);
   const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
   const [age, setAge] = React.useState(props.age);
@@ -71,7 +71,6 @@ export default function CreateWardForm(props) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <DesktopDatePicker
-              required
               id="date"
               name="date"
               label="Date"
