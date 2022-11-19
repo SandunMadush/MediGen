@@ -7,23 +7,23 @@ const Ward = db.define(
     "ward",
     {
         date: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.DATE,
             primaryKey: true
         },
         patient_name: {
             type: DataTypes.STRING,
         },
         age: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
         },
         gender: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
         },
         bht_no: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
         },
         con_surgeon: {
-            type: DataTypes.DATE,
+            type: DataTypes.STRING,
         }
     },
     {
