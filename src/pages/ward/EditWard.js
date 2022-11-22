@@ -19,7 +19,7 @@ export default function EditWardForm(props) {
     }, []);
 
 
-    const [date, setDate] = React.useState(dayjs('2014-08-18T21:11:54'));
+    const [date, setDate] = React.useState(dayjs(new Date()));
     const [patientName, setPatientName] = React.useState(props?.patient_name);
     const [bhtNumber, setBhtNumber] = React.useState(props?.bht_no);
     const [age, setAge] = React.useState(props?.age);

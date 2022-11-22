@@ -127,8 +127,7 @@ export default function Ward() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="UHKDU Theatre"
-          subheader="Create Theatre"
+          title="UHKDU Ward Details-"
         />
         <CardContent>
           <CreateWardForm />
