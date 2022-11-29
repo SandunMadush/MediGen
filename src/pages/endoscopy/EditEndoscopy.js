@@ -7,9 +7,15 @@ import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
+export default function EditEndoscopyForm(props) {
+  let { id } = useParams();
 
-export default function CreateEndoscopyForm(props) {
+  useEffect(() => {
+    setEndoscopy();
+  }, []);
 
   const [date, setDate] = React.useState(dayjs(new Date()));
   const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
@@ -46,27 +52,45 @@ export default function CreateEndoscopyForm(props) {
         break;
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createEndoscopy(e);
+    EditEndoscopy(e);
   };
 
-  const createEndoscopy = async (e) => {
+  const setEndoscopy = async () => {
+    const res = await fetch(`http://localhost:5000/endoscopy/${id}`);
+    const data = await res.json();
+    setBhtNumber(data[0].bht_no);
+    setPatientName(data[0].patient_name);
+    setAge(data[0].age);
+    setProcedure(data[0].endo_procedure);
+    setPhoneNumber(data[0].phone_no);
+    setConsultant(data[0].consultant);
+  };
+
+  const EditEndoscopy = async (e) => {
     e.preventDefault();
-    const endoscopy = { date, patient_name: patientName, bht_no: bhtNumber, age, endo_procedure: procedure, phone_no: phoneNumber, consultant };
-    const res = await fetch('http://localhost:5000/endoscopy', {
-      method: 'POST',
+    const endoscopy = {
+      date,
+      patient_name: patientName,
+      bht_no: bhtNumber,
+      age,
+      endo_procedure: procedure,
+      phone_no: phoneNumber,
+      consultant,
+    };
+    const res = await fetch(`http://localhost:5000/endoscopy/${bhtNumber}`, {
+      method: "PUT",
       headers: {
-        'Content-type': 'application/json',
+        "Content-type": "application/json",
       },
       body: JSON.stringify(endoscopy),
     });
     const data = await res.json();
     if (data) {
-      alert('Endoscopy created successfully');
+      alert("Details updated successfully");
     }
-  }
+  };
 
   return (
     <React.Fragment>
@@ -81,8 +105,8 @@ export default function CreateEndoscopyForm(props) {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={date}
-              onChange={(event) => handleChange('date', event)}
+              value={date ? date : new Date()}
+              onChange={(event) => handleChange("date", event)}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />
           </Grid>
@@ -93,8 +117,8 @@ export default function CreateEndoscopyForm(props) {
               name="bht_number"
               label="BHT Number"
               fullWidth
-              value={bhtNumber}
-              onChange={(event) => handleChange('bht_number', event)}
+              value={bhtNumber ? bhtNumber : ""}
+              onChange={(event) => handleChange("bht_number", event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -106,8 +130,8 @@ export default function CreateEndoscopyForm(props) {
               name="patient_name"
               label="Patient Name"
               fullWidth
-              value={patientName}
-              onChange={(event) => handleChange('patient_name', event)}
+              value={patientName ? patientName : ""}
+              onChange={(event) => handleChange("patient_name", event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -118,9 +142,10 @@ export default function CreateEndoscopyForm(props) {
               id="age"
               name="age"
               label="Age"
+              type="number"
               fullWidth
-              value={age}
-              onChange={(event) => handleChange('age', event)}
+              value={age ? age : ""}
+              onChange={(event) => handleChange("age", event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -132,13 +157,12 @@ export default function CreateEndoscopyForm(props) {
               name="procedure"
               label="Procedure"
               fullWidth
-              value={procedure}
-              onChange={(event) => handleChange('procedure', event)}
+              value={procedure ? procedure : ""}
+              onChange={(event) => handleChange("procedure", event)}
               autoComplete="given-name"
               variant="outlined"
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
             <TextField
               required
@@ -146,8 +170,8 @@ export default function CreateEndoscopyForm(props) {
               name="phone_number"
               label="Phone Number"
               fullWidth
-              value={phoneNumber}
-              onChange={(event) => handleChange('phone_number', event)}
+              value={phoneNumber ? phoneNumber : ""}
+              onChange={(event) => handleChange("phone_number", event)}
               autoComplete="given-name"
               variant="outlined"
             />
@@ -160,15 +184,15 @@ export default function CreateEndoscopyForm(props) {
               name="consultant"
               label="Consultant"
               fullWidth
-              value={consultant}
-              onChange={(event) => handleChange('consultant', event)}
-              autoComplete="given-name"
+              value={consultant ? consultant : ""}
+              onChange={(event) => handleChange("con_surgeon", event)}
+              autoComplete="shipping address-level2"
               variant="outlined"
             />
           </Grid>
 
           <Grid item xs={12}>
-          <Button variant="contained" onClick={(event) => handleSubmit(event)}>Create</Button>
+          <Button variant="contained" onClick={(event) => handleSubmit(event)}>Update</Button>
           </Grid>
         </Grid>
       </LocalizationProvider>

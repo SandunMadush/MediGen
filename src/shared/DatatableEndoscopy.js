@@ -2,10 +2,10 @@ import './Datatable.scss';
 
 import { DataGrid } from "@mui/x-data-grid";
 
-export const DataTable = ({ rows, columns }) => {
+export const DataTableEndoscopy = ({ rows, columns }) => {
     return (
         <div>
-            <h3> Ward Details </h3>
+            <h3> Endoscopy Details </h3>
             <div style={{ height: 500, width: '100%', display: "flex" }}>
                 <DataGrid
                     rows={rows}

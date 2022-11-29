@@ -4,9 +4,9 @@ import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, D
 import { Delete, Edit } from "@mui/icons-material";
 
 import CreateWardForm from "./CreateWard";
-import { DataTable } from "../../shared/Datatable";
+import { DataTableWard } from "../../shared/DatatableWard";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { red } from "@mui/material/colors";
+import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -118,7 +118,7 @@ export default function Ward() {
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
               W
             </Avatar>
           }
@@ -127,14 +127,14 @@ export default function Ward() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="UHKDU Ward Details-"
+          title= "UHKDU Ward Details-"
         />
         <CardContent>
           <CreateWardForm />
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} />
+        <DataTableWard rows={rows} columns={columns} />
       )}
 
       <Dialog
@@ -142,11 +142,11 @@ export default function Ward() {
         onClose={handleClose}
       >
         <DialogTitle>
-          {"Are you sure you want to delete this ward?"}
+          {"Are you sure you want to delete this row?"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Please confirm if you want to delete this ward.
+            Please confirm if you want to delete this row.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

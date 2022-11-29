@@ -3,6 +3,7 @@ import { createWard, deleteWard, getWard, getWards, updateWard } from "../contro
 
 import express from "express";
 import { refreshToken } from "../controllers/refresh-token.js";
+import { createEndoscopy, deleteEndoscopy, updateEndoscopy } from "../controllers/endoscopy.controller.js";
 
 const router = express.Router();
 
@@ -16,6 +17,9 @@ router.get('/wards/:id', getWard);
 router.post('/wards', createWard);
 router.put('/wards/:id', updateWard);
 router.delete('/wards/:id', deleteWard);
+router.post('/endoscopy', createEndoscopy);
+router.put('/endoscopy/:id', updateEndoscopy);
+router.delete('/endoscopy/:id', deleteEndoscopy);
 
 // router.get('/wards', verifyToken, getWards);
 // router.post('/ward', verifyToken, createWard);
