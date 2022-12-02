@@ -7,15 +7,22 @@ import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export default function CreateClinicForm(props) {
+export default function EditClinicForm(props) {
+  let { id } = useParams();
+
+  useEffect(() => {
+    setClinic();
+  }, []);
 
   const [date, setDate] = React.useState(dayjs(new Date()));
-  const [patientName, setPatientName] = React.useState(props.patient_name);
-  const [clinicNumber, setClinicNumber] = React.useState(props.clinic_no);
-  const [age, setAge] = React.useState(props.age);
-  const [phoneNumber, setPhoneNumber] = React.useState(props.phone_no);
-  const [visitNumber, setVisitNumber] = React.useState(props.visit_no);
+  const [patientName, setPatientName] = React.useState(props?.patient_name);
+  const [clinicNumber, setClinicNumber] = React.useState(props?.bht_no);
+  const [age, setAge] = React.useState(props?.age);
+  const [phoneNumber, setPhoneNumber] = React.useState(props?.gender);
+  const [visitNumber, setVisitNumber] = React.useState(props?.con_surgeon);
 
   const handleChange = (id, value) => {
     switch (id) {
@@ -44,12 +51,22 @@ export default function CreateClinicForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createClinic(e);
+    editClinic(e);
   };
 
-  const createClinic = async (e) => {
+  const setClinic = async () => {
+    const res = await fetch(`http://localhost:5000/clinics/${id}`);
+    const data = await res.json();
+    setClinicNumber(data[0].clinic_no);
+    setPatientName(data[0].patient_name);
+    setAge(data[0].age);
+    setPhoneNumber(data[0].phone_no);
+    setVisitNumber(data[0].visit_no);
+  };
+
+  const editClinic = async (e) => {
     e.preventDefault();
-    const Clinic = {
+    const clinic = {
       date,
       patient_name: patientName,
       clinic_no: clinicNumber,
@@ -57,16 +74,16 @@ export default function CreateClinicForm(props) {
       phone_no: phoneNumber,
       visit_no: visitNumber,
     };
-    const res = await fetch("http://localhost:5000/clinics", {
-      method: "POST",
+    const res = await fetch(`http://localhost:5000/clinics/${clinicNumber}`, {
+      method: "PUT",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(Clinic),
+      body: JSON.stringify(clinic),
     });
     const data = await res.json();
     if (data) {
-      alert("Clinic created successfully");
+      alert("Clinic updated successfully");
     }
   };
 
@@ -82,7 +99,7 @@ export default function CreateClinicForm(props) {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={date}
+              value={date ? date : new Date()}
               onChange={(event) => handleChange("date", event)}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />
@@ -168,5 +185,6 @@ export default function CreateClinicForm(props) {
         </Grid>
       </LocalizationProvider>
     </React.Fragment>
+
   );
 }

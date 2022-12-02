@@ -8,7 +8,7 @@ const Ward = db.define(
   {
     date: {
       type: DataTypes.DATE,
-      primaryKey: true,
+      
     },
     patient_name: {
       type: DataTypes.STRING,
@@ -21,6 +21,7 @@ const Ward = db.define(
     },
     bht_no: {
       type: DataTypes.STRING,
+      primaryKey: true,
     },
     con_surgeon: {
       type: DataTypes.STRING,

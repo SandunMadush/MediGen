@@ -9,6 +9,8 @@ import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 export default function EditTheatreForm(props) {
   let { id } = useParams();
@@ -18,24 +20,24 @@ export default function EditTheatreForm(props) {
   }, []);
 
   const [date, setDate] = React.useState(dayjs(new Date()));
-  const [patientName, setPatientName] = React.useState(props.patient_name);
-  const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
-  const [wardNumber, setWardNumber] = React.useState(props.ward_no);
-  const [age, setAge] = React.useState(props.age);
-  const [gender, setGender] = React.useState(props.gender);
-  const [surgery, setSurgery] = React.useState(props.surgery);
-  const [conSurgeon, setConSurgeon] = React.useState(props.con_surgeon);
+  const [patientName, setPatientName] = React.useState(props?.patient_name);
+  const [bhtNumber, setBhtNumber] = React.useState(props?.bht_no);
+  const [wardNumber, setWardNumber] = React.useState(props?.ward_no);
+  const [age, setAge] = React.useState(props?.age);
+  const [gender, setGender] = React.useState(props?.gender);
+  const [surgery, setSurgery] = React.useState(props?.surgery);
+  const [conSurgeon, setConSurgeon] = React.useState(props?.con_surgeon);
   const [conAnesthetic, setConAnesthetic] = React.useState(
-    props.con_anesthetic
+    props?.con_anesthetic
   );
-  const [theatreNumber, setTheatreNumber] = React.useState(props.theatre_no);
+  const [theatreNumber, setTheatreNumber] = React.useState(props?.theatre_no);
   const [isPcr, setIsPcr] = React.useState(false);
   const [isRAT, setIsRat] = React.useState(false);
   const [isFasting, setIsFasting] = React.useState(false);
   const [isEcho, setIsEcho] = React.useState(false);
   const [isEcg, setIsEcg] = React.useState(false);
   const [isCt, setIsCt] = React.useState(false);
-  const [clinicNumber, setClinicNumber] = React.useState(props.clinic_number);
+  const [clinicNumber, setClinicNumber] = React.useState(props?.clinic_number);
 
   const handleChange = (id, value) => {
     switch (id) {
@@ -170,7 +172,7 @@ export default function EditTheatreForm(props) {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={date}
+              value={date  ? date : new Date()}
               onChange={(event) => handleChange("date", event)}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />

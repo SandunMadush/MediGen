@@ -4,6 +4,8 @@ import Clinic from "../pages/clinic/Clinic";
 import Dashboard from "../pages/dashboard/Dashboard";
 import EditWardForm from "../pages/ward/EditWard";
 import EditEndoscopyForm from "../pages/endoscopy/EditEndoscopy";
+import EditTheatreForm from "../pages/theatre/EditTheatre";
+import EditClinicForm from "../pages/clinic/EditClinic";
 import Endoscopy from "../pages/endoscopy/Endoscopy";
 import Layout from "../layout/Layout";
 import Login from "../pages/login/Login";
@@ -20,7 +22,9 @@ const routes = (
       <Route path="/user" element={<Dashboard />} />
       <Route path="/user/dashboard" element={<Dashboard />} />
       <Route path="/user/clinic" element={<Clinic />} />
+      <Route path="/user/clinic/edit/:id" element={<EditClinicForm />} />
       <Route path="/user/theatre" element={<Theatre />} />
+      <Route path="/user/theatre/edit/:id" element={<EditTheatreForm />} />
       <Route path="/user/ward" element={<Ward />} />
       <Route path="/user/ward/edit/:id" element={<EditWardForm />} />
       <Route path="/user/endoscopy" element={<Endoscopy />} />

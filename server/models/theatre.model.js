@@ -8,7 +8,7 @@ const Theatre = db.define(
   {
     date: {
       type: DataTypes.DATE,
-      primaryKey: true,
+      
     },
     ward_no: {
       type: DataTypes.STRING,
@@ -18,6 +18,7 @@ const Theatre = db.define(
     },
     bht_no: {
       type: DataTypes.STRING,
+      primaryKey: true,
     },
     age: {
       type: DataTypes.INTEGER,

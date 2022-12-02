@@ -18,12 +18,12 @@ export default function EditEndoscopyForm(props) {
   }, []);
 
   const [date, setDate] = React.useState(dayjs(new Date()));
-  const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
-  const [patientName, setPatientName] = React.useState(props.patient_name);
-  const [age, setAge] = React.useState(props.age);
-  const [procedure, setProcedure] = React.useState(props.endo_procedure);
-  const [phoneNumber, setPhoneNumber] = React.useState(props.phone_no);
-  const [consultant, setConsultant] = React.useState(props.consultant);
+  const [bhtNumber, setBhtNumber] = React.useState(props?.bht_no);
+  const [patientName, setPatientName] = React.useState(props?.patient_name);
+  const [age, setAge] = React.useState(props?.age);
+  const [procedure, setProcedure] = React.useState(props?.endo_procedure);
+  const [phoneNumber, setPhoneNumber] = React.useState(props?.phone_no);
+  const [consultant, setConsultant] = React.useState(props?.consultant);
 
   const handleChange = (id, value) => {
     switch (id) {

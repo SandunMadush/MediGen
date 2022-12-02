@@ -3,16 +3,12 @@ import db from "../config/db.js";
 
 const { DataTypes } = Sequelize;
 
-const Endoscopy = db.define(
-  "endoscopy",
+const Clinic = db.define(
+  "clinic",
   {
     date: {
       type: DataTypes.DATE,
       
-    },
-    bht_no: {
-      type: DataTypes.STRING,
-      primaryKey: true,
     },
     patient_name: {
       type: DataTypes.STRING,
@@ -20,16 +16,16 @@ const Endoscopy = db.define(
     age: {
       type: DataTypes.INTEGER,
     },
-    endo_procedure: {
-      type: DataTypes.STRING,
-    },
     phone_no: {
+        type: DataTypes.STRING,
+      },
+    clinic_no: {
       type: DataTypes.STRING,
+      primaryKey: true,
     },
-
-    consultant: {
-      type: DataTypes.STRING,
-    },
+    visit_no: {
+        type: DataTypes.STRING,
+      },
   },
   {
     freezeTableName: true,
@@ -40,4 +36,4 @@ const Endoscopy = db.define(
   await db.sync();
 })();
 
-export default Endoscopy;
+export default Clinic;
