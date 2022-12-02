@@ -4,7 +4,7 @@ import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, D
 import { Delete, Edit } from "@mui/icons-material";
 
 import CreateEndoscopyForm from "./CreateEndoscopy";
-import { DataTableEndoscopy } from "../../shared/DatatableEndoscopy";
+import { DataTable } from "../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
@@ -27,10 +27,10 @@ export default function Endoscopy() {
       field: "age",
       headerName: "Age",
       type: "string",
-      flex: 1
+      flex: 0.5
     },
     
-    { field: "endo_procedure", headerName: "Procedure", type: "string", flex: 1 },
+    { field: "endo_procedure", headerName: "Procedure", type: "string", flex: 0.75 },
     { field: "phone_no", headerName: "Phone Number", type: "string", flex: 1 },
     { field: "consultant", headerName: "Consultant", type: "string", flex: 1 },
     {
@@ -137,7 +137,7 @@ export default function Endoscopy() {
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTableEndoscopy rows={rows} columns={columns} />
+        <DataTable rows={rows} columns={columns} title='15475' />
       )}
 
       <Dialog

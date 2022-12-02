@@ -36,7 +36,7 @@ export default function CreateEndoscopyForm(props) {
       case "procedure":
         setProcedure(value.target.value);
         break;
-      case "phone_no":
+      case "phone_number":
         setPhoneNumber(value.target.value);
         break;
       case "consultant":

@@ -2,15 +2,21 @@ import * as React from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-export default function CreateTheatreForm(props) {
+export default function EditTheatreForm(props) {
+  let { id } = useParams();
+
+  useEffect(() => {
+    setTheatre();
+  }, []);
+
   const [date, setDate] = React.useState(dayjs(new Date()));
   const [patientName, setPatientName] = React.useState(props.patient_name);
   const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
@@ -32,73 +38,93 @@ export default function CreateTheatreForm(props) {
   const [clinicNumber, setClinicNumber] = React.useState(props.clinic_number);
 
   const handleChange = (id, value) => {
-
     switch (id) {
-      case "date":
-        setDate(value);
-        break;
-      case "patient_name":
-        setPatientName(value.target.value);
-        break;
-      case "bht_number":
-        setBhtNumber(value.target.value);
-        break;
-      case "ward_number":
-        setWardNumber(value.target.value);
-        break;
-      case "age":
-        setAge(value.target.value);
-        break;
-      case "gender":
-        setGender(value.target.value);
-        break;
-      case "surgery":
-        setSurgery(value.target.value);
-        break;
-      case "con_surgeon":
-        setConSurgeon(value.target.value);
-        break;
-      case "con_anesthetic":
-        setConAnesthetic(value.target.value);
-        break;
-      case "theatre_number":
-        setTheatreNumber(value.target.value);
-        break;
-      case "isPcr":
-        setIsPcr(value.target.checked);
-        break;
-      case "isRat":
-        setIsRat(value.target.checked);
-        break;
-      case "isFasting":
-        setIsFasting(value.target.checked);
-        break;
-      case "isEcho":
-        setIsEcho(value.target.checked);
-        break;
-      case "isEcg":
-        setIsEcg(value.target.checked);
-        break;
-      case "isCt":
-        setIsCt(value.target.checked);
-        break;
-      case "clinic_number":
-        setClinicNumber(value.target.value);
-        break;
-      default:
-        break;
+        case "date":
+            setDate(value);
+            break;
+          case "patient_name":
+            setPatientName(value.target.value);
+            break;
+          case "bht_number":
+            setBhtNumber(value.target.value);
+            break;
+          case "ward_number":
+            setWardNumber(value.target.value);
+            break;
+          case "age":
+            setAge(value.target.value);
+            break;
+          case "gender":
+            setGender(value.target.value);
+            break;
+          case "surgery":
+            setSurgery(value.target.value);
+            break;
+          case "con_surgeon":
+            setConSurgeon(value.target.value);
+            break;
+          case "con_anesthetic":
+            setConAnesthetic(value.target.value);
+            break;
+          case "theatre_number":
+            setTheatreNumber(value.target.value);
+            break;
+          case "isPcr":
+            setIsPcr(value.target.checked);
+            break;
+          case "isRat":
+            setIsRat(value.target.checked);
+            break;
+          case "isFasting":
+            setIsFasting(value.target.checked);
+            break;
+          case "isEcho":
+            setIsEcho(value.target.checked);
+            break;
+          case "isEcg":
+            setIsEcg(value.target.checked);
+            break;
+          case "isCt":
+            setIsCt(value.target.checked);
+            break;
+          case "clinic_number":
+            setClinicNumber(value.target.value);
+            break;
+          default:
+            break;
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    createTheatre(e);
-    console.log('click')
+    EditTheatre(e);
   };
 
-  const createTheatre = async (e) => {
+  const setTheatre = async () => {
+    const res = await fetch(`http://localhost:5000/theatre/${id}`);
+    const data = await res.json();
+    setBhtNumber(data[0].bht_no);
+    setPatientName(data[0].patient_name);
+    setBhtNumber(data[0].bht_no);
+    setWardNumber(data[0].ward_no);
+    setAge(data[0].age);
+    setGender(data[0].gender);
+    setSurgery(data[0].surgery);
+    setConSurgeon(data[0].con_surgeon);
+    setConAnesthetic(data[0].con_anesthetic);
+    setTheatreNumber(data[0].theatre_no);
+    setIsPcr(data[0].is_pcr);
+    setIsRat(data[0].is_rat);
+    setIsEcg(data[0].is_ecg);
+    setIsFasting(data[0].is_fasting);
+    setIsEcho(data[0].is_echo);
+    setIsEcg(data[0].is_ecg);
+    setIsCt(data[0].is_ct);
+    setClinicNumber(data[0].clinic_number);
+    
+  };
+
+  const EditTheatre = async (e) => {
     e.preventDefault();
-    console.log('create')
     const theatre = {
       date,
       patient_name: patientName,
@@ -118,18 +144,16 @@ export default function CreateTheatreForm(props) {
       is_ct: isCt,
       clinic_number: clinicNumber,
     };
-    console.log(theatre)
-    const res = await fetch("http://localhost:5000/theatre", {
-      method: "POST",
+    const res = await fetch(`http://localhost:5000/theatre/${bhtNumber}`, {
+      method: "PUT",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(theatre),
     });
     const data = await res.json();
-    console.log(data)
     if (data) {
-      alert("Theatre created successfully");
+      alert("Details updated successfully");
     }
   };
 

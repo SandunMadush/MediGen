@@ -4,7 +4,7 @@ import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, D
 import { Delete, Edit } from "@mui/icons-material";
 
 import CreateWardForm from "./CreateWard";
-import { DataTableWard } from "../../shared/DatatableWard";
+import { DataTable } from "../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
@@ -134,7 +134,7 @@ export default function Ward() {
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTableWard rows={rows} columns={columns} />
+        <DataTable rows={rows} columns={columns} title='1324' />
       )}
 
       <Dialog
