@@ -43,8 +43,8 @@ const Login = () => {
   const btnstyle = { margin: "8px 0", borderRadius: 50, width: 220 };
   const tboxstyle = { margin: "11px 0" };
   const imgstyle = {
-    width: 80,
-    height: "auto",
+    width: 150,
+    height: 120,
     margin: "8px 0",
     align: "center",
   };
@@ -85,12 +85,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <FormGroup sx={{ pl: 4 }} align="center">
-            <FormControlLabel
-              control={<Checkbox defaultChecked />}
-              label="Remember me"
-            />
-          </FormGroup>
+          
 
           <Button
             variant="contained"
@@ -111,9 +106,8 @@ const Login = () => {
             },
           }}
         >
-          <Link href="#">Forgot password</Link>
         </Box>
-        <img src={logo} style={imgstyle} alt="logo" />
+        <img  src={logo} style={imgstyle} alt="logo" />
       </Paper>
     </Grid>
   );
