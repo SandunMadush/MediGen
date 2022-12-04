@@ -48,8 +48,10 @@ export default function CreateEndoscopyForm(props) {
   };
 
   const handleSubmit = async (e) => {
+    if(bhtNumber == '') return;
     e.preventDefault();
     createEndoscopy(e);
+
   };
 
   const createEndoscopy = async (e) => {
@@ -89,6 +91,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {bhtNumber==''}
               id="bht_number"
               name="bht_number"
               label="BHT Number"
