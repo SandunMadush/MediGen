@@ -44,6 +44,11 @@ export default function CreateWardForm(props) {
   };
 
   const handleSubmit = async (e) => {
+    if(patientName == '') return;
+    if(age == '') return;
+    if(gender == '') return;
+    if(bhtNumber == '') return;
+    if(conSurgeon == '') return;
     e.preventDefault();
     createWard(e);
   };
@@ -85,6 +90,7 @@ export default function CreateWardForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {patientName==''}
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -98,6 +104,7 @@ export default function CreateWardForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {age==''}
               id="age"
               name="age"
               label="Age"
@@ -112,6 +119,7 @@ export default function CreateWardForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {gender==''}
               id="gender"
               name="gender"
               label="Gender"
@@ -125,6 +133,7 @@ export default function CreateWardForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {bhtNumber==''}
               id="bht_number"
               name="bht_number"
               label="BHT Number"
@@ -139,6 +148,7 @@ export default function CreateWardForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {conSurgeon==''}
               id="con_surgeon"
               name="con_surgeon"
               label="Conducted Surgeon"

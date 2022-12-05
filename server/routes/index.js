@@ -1,4 +1,4 @@
-import { Login, Logout } from "../controllers/auth.controller.js";
+import { Login, Logout, Register } from "../controllers/auth.controller.js";
 import {
   createWard,
   deleteWard,
@@ -6,6 +6,14 @@ import {
   getWards,
   updateWard,
 } from "../controllers/ward.controller.js";
+
+import {
+  createUser,
+  deleteUser,
+  getUser,
+  getUsers,
+  updateUser,
+} from "../controllers/user.controller.js";
 
 import express from "express";
 import { refreshToken } from "../controllers/refresh-token.js";
@@ -34,10 +42,15 @@ import { getDashboardData } from "../controllers/dashboard.controller.js";
 const router = express.Router();
 
 // router.post('/users', Register);
+router.get("/user", getUsers);
+router.get("/user/:id", getUser);
+router.put("/user", updateUser);
+router.delete("/user/:id", deleteUser);
+router.post("/user", createUser);
 router.post("/login", Login);
+router.post("/register", Register);
 router.get("/token", refreshToken);
 router.delete("/logout", Logout);
-
 router.get("/wards", getWards);
 router.get("/dashboard", getDashboardData);
 router.get("/wards/:id", getWard);

@@ -1,16 +1,12 @@
 import { Avatar, Grid, Paper, TextField } from "@mui/material";
 import React, { useState } from "react";
 
+import LoginIcon from "@mui/icons-material/Login";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import Link from "@mui/material/Link";
-import LoginIcon from "@mui/icons-material/Login";
 import axios from "axios";
-import logo from "../../assets/kdu.png";
 import { useNavigate } from "react-router-dom";
+import logo from "../../../assets/kdu.png";
 
 const Login = () => {
   const [username, setUsername] = useState("");

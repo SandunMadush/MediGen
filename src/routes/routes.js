@@ -1,17 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 
-import Clinic from "../pages/clinic/Clinic";
-import Dashboard from "../pages/dashboard/Dashboard";
-import EditWardForm from "../pages/ward/EditWard";
-import EditEndoscopyForm from "../pages/endoscopy/EditEndoscopy";
-import EditTheatreForm from "../pages/theatre/EditTheatre";
-import EditClinicForm from "../pages/clinic/EditClinic";
-import Endoscopy from "../pages/endoscopy/Endoscopy";
+import Clinic from "../pages/user/clinic/Clinic";
+import Dashboard from "../pages/user/dashboard/Dashboard";
+import EditWardForm from "../pages/user/ward/EditWard";
+import EditEndoscopyForm from "../pages/user/endoscopy/EditEndoscopy";
+import EditTheatreForm from "../pages/user/theatre/EditTheatre";
+import EditClinicForm from "../pages/user/clinic/EditClinic";
+import Endoscopy from "../pages/user/endoscopy/Endoscopy";
 import Layout from "../layout/Layout";
-import Login from "../pages/login/Login";
+import Login from "../pages/user/login/Login";
+import User from "../pages/admin/user/User";
+import EditUserForm from "../pages/admin/user/CreateUser";
 import React from "react";
-import Theatre from "../pages/theatre/Theatre";
-import Ward from "../pages/ward/Ward";
+import Theatre from "../pages/user/theatre/Theatre";
+import Ward from "../pages/user/ward/Ward";
 
 const routes = (
   <Routes>
@@ -29,6 +31,10 @@ const routes = (
       <Route path="/user/ward/edit/:id" element={<EditWardForm />} />
       <Route path="/user/endoscopy" element={<Endoscopy />} />
       <Route path="/user/endoscopy/edit/:id" element={<EditEndoscopyForm />} />
+    </Route>
+    <Route path="/admin" element={<Layout />}>
+    <Route path="/admin/user" element={<User />} />
+    <Route path="/admin/user/edit/:id" element={<EditUserForm />} />
     </Route>
   </Routes>
 );

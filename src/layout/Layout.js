@@ -28,6 +28,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import logo from '../assets/kdu.png';
+import { blue, grey, pink, purple, yellow } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
@@ -93,37 +94,37 @@ export default function PersistentDrawerLeft() {
         {
             id: "dashboard",
             text: "Dashboard",
-            icon: <DashboardIcon />,
+            icon: <DashboardIcon sx={{ color: blue[600] }}/>,
             path: "/user/",
         },
         {
             id: "ward",
             text: "Ward",
-            icon: <HotelIcon />,
+            icon: <HotelIcon sx={{ color: blue[500] }}/>,
             path: "/user/ward",
         },
         {
             id: "clinic",
             text: "Clinic",
-            icon: <LocalHospitalIcon />,
+            icon: <LocalHospitalIcon sx={{ color: blue[400] }}/>,
             path: "/user/clinic",
         },
         {
             id: "theatre",
             text: "Theatre",
-            icon: <HotelIcon />,
+            icon: <HotelIcon sx={{ color: blue[300] }}/>,
             path: "/user/theatre",
         },
         {
             id: "endoscopy",
             text: "Endoscopy",
-            icon: <HealingIcon />,
+            icon: <HealingIcon sx={{ color: blue[300] }}/>,
             path: "/user/endoscopy",
         },
         {
             id: "logout",
             text: "Logout",
-            icon: <LogoutIcon />,
+            icon: <LogoutIcon sx={{ color: grey[700] }}/>,
             path: "/user/logout",
         },
     ];
@@ -206,7 +207,7 @@ export default function PersistentDrawerLeft() {
                         </Grid>
                         <Grid item>
                             <Typography variant="p" noWrap component="div">
-                                MEDIGEN
+                                <b>MEDIGEN</b>
                             </Typography>
                         </Grid>
                     </Grid>

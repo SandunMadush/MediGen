@@ -16,6 +16,11 @@
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "src": "MediGen.png",
+      "type": "image/png",
+      "sizes": "image/x-icon"
     }
   ],
   "start_url": ".",

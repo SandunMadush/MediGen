@@ -3,14 +3,14 @@ import * as React from "react";
 import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Stack } from '@mui/material';
 import { Delete, Edit } from "@mui/icons-material";
 
-import CreateClinicForm from "./CreateClinic";
-import { DataTable } from "../../shared/Datatable";
+import CreateWardForm from "./CreateWard";
+import { DataTable } from "../../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Clinic() {
+export default function Ward() {
 
   const navigate = useNavigate();
 
@@ -24,13 +24,13 @@ export default function Clinic() {
       flex: 1
     },
     {
-      field: "clinic_no",
-      headerName: "Clinic Number",
+      field: "bht_no",
+      headerName: "BHT Number",
       type: "string",
       flex: 1
     },
-    { field: "phone_no", headerName: "Phone Number", type: "string", flex: 1 },
-    { field: "visit_no", headerName: "Visit Number", type: "string", flex: 1 },
+    { field: "gender", headerName: "Gender", type: "string", flex: 1 },
+    { field: "con_surgeon", headerName: "Surgeon", type: "string", flex: 1 },
     {
       field: 'action',
       headerName: 'Action',
@@ -42,7 +42,7 @@ export default function Clinic() {
           e.stopPropagation();
           const currentRow = params.row;
           if (id === 'edit') {
-            navigate(`/user/clinic/edit/${currentRow.clinic_no}`);
+            navigate(`/user/ward/edit/${currentRow.bht_no}`);
           } else if (id === 'delete') {
             setOpen(true);
             setSelectedRow(currentRow);
@@ -71,44 +71,44 @@ export default function Clinic() {
     if (action === 'cancel') {
       setOpen(false);
     } else {
-      deleteClinic(selectedRow.clinic_no);
+      deleteWard(selectedRow.bht_no);
       setOpen(false);
     }
   }
 
-  const getClinics = async () => {
-    const response = await fetch("http://localhost:5000/clinics");
+  const getWards = async () => {
+    const response = await fetch("http://localhost:5000/wards");
     const data = await response.json();
     setRows(formatRows(data));
   };
 
 
-  const deleteClinic = async (id) => {
-    const response = await fetch(`http://localhost:5000/clinics/${id}`, {
+  const deleteWard = async (id) => {
+    const response = await fetch(`http://localhost:5000/wards/${id}`, {
       method: 'DELETE',
     });
     const data = await response.json();
     console.log(data);
-    getClinics();
+    getWards();
     handleClose();
   };
 
   const formatRows = (data) => {
-    return data.map((clinic) => {
+    return data.map((ward) => {
       return {
-        id: clinic.clinic_no,
-        date: clinic.date,
-        patient_name: clinic.patient_name,
-        age: clinic.age,
-        clinic_no: clinic.clinic_no,
-        phone_no: clinic.phone_no,
-        visit_no: clinic.visit_no,
+        id: ward.bht_no,
+        date: ward.date,
+        patient_name: ward.patient_name,
+        age: ward.age,
+        bht_no: ward.bht_no,
+        gender: ward.gender,
+        con_surgeon: ward.con_surgeon,
       }
     })
   };
 
   useEffect(() => {
-    getClinics();
+    getWards();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -118,8 +118,8 @@ export default function Clinic() {
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-              C
+            <Avatar sx={{ bgcolor: "#ed4b82" }} aria-label="recipe">
+              W
             </Avatar>
           }
           action={
@@ -127,14 +127,14 @@ export default function Clinic() {
               <MoreVertIcon />
             </IconButton>
           }
-          title= "UHKDU Clinic Details-"
+          title= "Enter Ward Details-"
         />
         <CardContent>
-          <CreateClinicForm />
+          <CreateWardForm />
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} title='9999' />
+        <DataTable rows={rows} columns={columns} title='Ward Patient Details-' />
       )}
 
       <Dialog

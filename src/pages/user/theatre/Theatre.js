@@ -3,38 +3,51 @@ import * as React from "react";
 import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Stack } from '@mui/material';
 import { Delete, Edit } from "@mui/icons-material";
 
-import CreateWardForm from "./CreateWard";
-import { DataTable } from "../../shared/Datatable";
+import CreateTheatreForm from "./CreateTheatre";
+import { DataTable } from "../../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { blue, red } from "@mui/material/colors";
+import { blue } from "@mui/material/colors";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Ward() {
+export default function Theatre() {
 
   const navigate = useNavigate();
 
   const columns = [
-    { field: "date", headerName: "Date", type: "string", flex: 1 },
-    { field: "patient_name", headerName: "Patient Name", type: "string", flex: 1 },
-    {
-      field: "age",
-      headerName: "Age",
-      type: "string",
-      flex: 1
-    },
+    { field: "date", headerName: "Date", type: "string", flex: 1.5 },
+    { field: "patient_name", headerName: "Patient Name", type: "string", flex: 2 },
     {
       field: "bht_no",
       headerName: "BHT Number",
       type: "string",
-      flex: 1
+      flex: 2
     },
-    { field: "gender", headerName: "Gender", type: "string", flex: 1 },
-    { field: "con_surgeon", headerName: "Surgeon", type: "string", flex: 1 },
+    // { field: "ward_no", headerName: "Ward Name", type: "string", flex: 1 },
+    {
+      field: "age",
+      headerName: "Age",
+      type: "string",
+      flex: 0.5
+    },
+    
+    // { field: "gender", headerName: "Gender", type: "string", flex: 1, show: false },
+    // { field: "surgery", headerName: "Surgery", type: "string", flex: 1 },
+
+    { field: "con_surgeon", headerName: "Con Surgeon", type: "string", flex: 2 },
+    // { field: "con_anesthetic", headerName: "Con Anesthetic", type: "string", flex: 1 },
+    { field: "theatre_no", headerName: "Theatre Number", type: "string", flex: 2.2 },
+    // { field: "clinic_number", headerName: "Clinic Number", type: "string", flex: 1 },
+    { field: "is_pcr", headerName: "PCR", type: "boolean", flex: 0.4 },
+    { field: "is_rat", headerName: "RAT", type: "boolean", flex: 0.4 },
+    { field: "is_fasting", headerName: "Fasting", type: "boolean", flex: 1.2 },
+    { field: "is_echo", headerName: "Echo", type: "boolean", flex: 0.4 },
+    { field: "is_ecg", headerName: "ECG", type: "boolean", flex: 0.4 },
+    { field: "is_ct", headerName: "CT", type: "boolean", flex: 0.2 },
     {
       field: 'action',
       headerName: 'Action',
-      flex: 1,
+      flex: 2.5,
       disableClickEventBubbling: true,
 
       renderCell: (params) => {
@@ -42,7 +55,7 @@ export default function Ward() {
           e.stopPropagation();
           const currentRow = params.row;
           if (id === 'edit') {
-            navigate(`/user/ward/edit/${currentRow.bht_no}`);
+            navigate(`/user/theatre/edit/${currentRow.bht_no}`);
           } else if (id === 'delete') {
             setOpen(true);
             setSelectedRow(currentRow);
@@ -71,44 +84,55 @@ export default function Ward() {
     if (action === 'cancel') {
       setOpen(false);
     } else {
-      deleteWard(selectedRow.bht_no);
+      deleteTheatre(selectedRow.bht_no);
       setOpen(false);
     }
   }
 
-  const getWards = async () => {
-    const response = await fetch("http://localhost:5000/wards");
+  const getTheatres = async () => {
+    const response = await fetch("http://localhost:5000/theatre");
     const data = await response.json();
     setRows(formatRows(data));
   };
 
 
-  const deleteWard = async (id) => {
-    const response = await fetch(`http://localhost:5000/wards/${id}`, {
+  const deleteTheatre = async (id) => {
+    const response = await fetch(`http://localhost:5000/theatre/${id}`, {
       method: 'DELETE',
     });
     const data = await response.json();
     console.log(data);
-    getWards();
+    getTheatres();
     handleClose();
   };
 
   const formatRows = (data) => {
-    return data.map((ward) => {
+    return data.map((theatre) => {
       return {
-        id: ward.bht_no,
-        date: ward.date,
-        patient_name: ward.patient_name,
-        age: ward.age,
-        bht_no: ward.bht_no,
-        gender: ward.gender,
-        con_surgeon: ward.con_surgeon,
+        id: theatre.bht_no,
+        date: theatre.date,
+        patient_name: theatre.patient_name,
+        ward_no: theatre.ward_no,
+        age: theatre.age,
+        bht_no: theatre.bht_no,
+        gender: theatre.gender,
+        surgery: theatre.surgery,
+        con_surgeon: theatre.con_surgeon,
+        con_anesthetic: theatre.con_anesthetic,
+        theatre_no: theatre.theatre_no,
+        clinic_number: theatre.clinic_number,
+        is_pcr: theatre.is_pcr,
+        is_rat: theatre.is_rat,
+        is_fasting: theatre.is_fasting,
+        is_echo: theatre.is_echo,
+        is_ecg: theatre.is_ecg,
+        is_ct: theatre.is_ct
       }
     })
   };
 
   useEffect(() => {
-    getWards();
+    getTheatres();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -118,8 +142,8 @@ export default function Ward() {
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-              W
+            <Avatar sx={{ bgcolor: "#ffee33"}} aria-label="recipe">
+              T
             </Avatar>
           }
           action={
@@ -127,14 +151,14 @@ export default function Ward() {
               <MoreVertIcon />
             </IconButton>
           }
-          title= "UHKDU Ward Details-"
+          title= "Enter Theatre Details-"
         />
         <CardContent>
-          <CreateWardForm />
+          <CreateTheatreForm />
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} title='1324' />
+        <DataTable rows={rows} columns={columns} title='Theatre Patient Details-' />
       )}
 
       <Dialog

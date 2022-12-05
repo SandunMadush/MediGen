@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
 import SwipeableViews from "react-swipeable-views";
-import { DataTable } from "../../shared/Datatable";
+import { DataTable } from "../../../shared/Datatable";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -24,7 +24,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 4 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -46,7 +46,7 @@ function a11yProps(index) {
 }
 
 export default function Dashboard() {
-  const columns = [
+  const columnsBHT = [
     { field: "date", headerName: "Date", type: "string", flex: 1 },
     {
       field: "patient_name",
@@ -68,7 +68,37 @@ export default function Dashboard() {
     },
   ];
 
+  const columnsClinic = [
+    { field: "date", headerName: "Date", type: "string", flex: 1 },
+    {
+      field: "patient_name",
+      headerName: "Patient Name",
+      type: "string",
+      flex: 1,
+    },
+    {
+      field: "age",
+      headerName: "Age",
+      type: "string",
+      flex: 1,
+    },
+    {
+      field: "clinic_no",
+      headerName: "Clinic Number",
+      type: "string",
+      flex: 1,
+    },
+
+    {
+      field: "visit_no",
+      headerName: "Visit Number",
+      type: "string",
+      flex: 1,
+    }
+  ];
+
   const [rowsWard, setRowsWard] = React.useState([]);
+  const [rowsClinic, setRowsClinic] = React.useState([]);
   const [rowsTheatre, setRowsTheatre] = React.useState([]);
   const [rowsEndoscopy, setRowsEndoscopy] = React.useState([]);
 
@@ -88,6 +118,12 @@ export default function Dashboard() {
     const response = await fetch("http://localhost:5000/wards");
     const data = await response.json();
     setRowsWard(formatRows(data));
+  };
+
+  const getClinics = async () => {
+    const response = await fetch("http://localhost:5000/clinics");
+    const data = await response.json();
+    setRowsClinic(formatRowsClinic(data));
   };
 
   const getTheatres = async () => {
@@ -110,12 +146,27 @@ export default function Dashboard() {
         patient_name: dashboard.patient_name,
         age: dashboard.age,
         bht_no: dashboard.bht_no,
+      
+      };
+    });
+  };
+
+  const formatRowsClinic = (data) => {
+    return data.map((dashboard) => {
+      return {
+        id: dashboard.clinic_no,
+        date: dashboard.date,
+        patient_name: dashboard.patient_name,
+        age: dashboard.age,
+        clinic_no: dashboard.clinic_no,
+        visit_no: dashboard.visit_no
       };
     });
   };
 
   React.useEffect(() => {
     getWards();
+    getClinics();
     getTheatres();
     getEndoscopy();
 
@@ -129,9 +180,7 @@ export default function Dashboard() {
           <h2>WARD</h2>
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        Number of Patients: {rowsWard.length}
         </Typography>
       </CardContent>
     </React.Fragment>
@@ -144,9 +193,7 @@ export default function Dashboard() {
           <h2>CLINIC</h2>
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+         Number of Patients: {rowsClinic.length} 
         </Typography>
       </CardContent>
     </React.Fragment>
@@ -173,9 +220,7 @@ export default function Dashboard() {
           <h2>ENDOSCOPY</h2>
         </Typography>
         <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
+        Number of Patients: {rowsEndoscopy.length}
         </Typography>
       </CardContent>
     </React.Fragment>
@@ -209,9 +254,11 @@ export default function Dashboard() {
             textColor="primary"
             variant="fullWidth"
           >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab style={{ fontWeight: 'bold' }} label="WARD" {...a11yProps(0)} />
+            <Tab style={{ fontWeight: 'bold' }}  label="CLINIC" {...a11yProps(1)} />
+            <Tab style={{ fontWeight: 'bold' }}  label="THEATRE" {...a11yProps(2)} />
+            <Tab style={{ fontWeight: 'bold' }}  label="ENDOSCOPY" {...a11yProps(3)} />
+          
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -221,17 +268,22 @@ export default function Dashboard() {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             {rowsWard.length > 0 && (
-              <DataTable rows={rowsWard} columns={columns} title="1324" />
+              <DataTable rows={rowsWard} columns={columnsBHT} title="Ward Patient Summary " />
             )}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            {rowsTheatre.length > 0 && (
-              <DataTable rows={rowsTheatre} columns={columns} title="1555" />
+            {rowsClinic.length > 0 && (
+              <DataTable rows={rowsClinic} columns={columnsClinic} title="Clinic Patient Summary " />
             )}
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
+            {rowsTheatre.length > 0 && (
+              <DataTable rows={rowsTheatre} columns={columnsBHT} title="Theatre Patient Summary" />
+            )}
+          </TabPanel>
+          <TabPanel value={value} index={3} dir={theme.direction}>
             {rowsEndoscopy.length > 0 && (
-              <DataTable rows={rowsEndoscopy} columns={columns} title="2222" />
+              <DataTable rows={rowsEndoscopy} columns={columnsBHT} title="Endoscopy Patient Summary" />
             )}
           </TabPanel>
         </SwipeableViews>

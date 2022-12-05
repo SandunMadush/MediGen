@@ -3,51 +3,38 @@ import * as React from "react";
 import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, Stack } from '@mui/material';
 import { Delete, Edit } from "@mui/icons-material";
 
-import CreateTheatreForm from "./CreateTheatre";
-import { DataTable } from "../../shared/Datatable";
+import CreateClinicForm from "./CreateClinic";
+import { DataTable } from "../../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { blue } from "@mui/material/colors";
+import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Theatre() {
+export default function Clinic() {
 
   const navigate = useNavigate();
 
   const columns = [
-    { field: "date", headerName: "Date", type: "string", flex: 1.5 },
-    { field: "patient_name", headerName: "Patient Name", type: "string", flex: 2 },
-    {
-      field: "bht_no",
-      headerName: "BHT Number",
-      type: "string",
-      flex: 2
-    },
-    // { field: "ward_no", headerName: "Ward Name", type: "string", flex: 1 },
+    { field: "date", headerName: "Date", type: "string", flex: 1 },
+    { field: "patient_name", headerName: "Patient Name", type: "string", flex: 1 },
     {
       field: "age",
       headerName: "Age",
       type: "string",
-      flex: 0.5
+      flex: 1
     },
-    
-    // { field: "gender", headerName: "Gender", type: "string", flex: 1, show: false },
-    // { field: "surgery", headerName: "Surgery", type: "string", flex: 1 },
-
-    { field: "con_surgeon", headerName: "Con Surgeon", type: "string", flex: 2 },
-    // { field: "con_anesthetic", headerName: "Con Anesthetic", type: "string", flex: 1 },
-    { field: "theatre_no", headerName: "Theatre Number", type: "string", flex: 2.2 },
-    // { field: "clinic_number", headerName: "Clinic Number", type: "string", flex: 1 },
-    { field: "is_pcr", headerName: "PCR", type: "boolean", flex: 0.4 },
-    { field: "is_rat", headerName: "RAT", type: "boolean", flex: 0.4 },
-    { field: "is_fasting", headerName: "Fasting", type: "boolean", flex: 1.2 },
-    { field: "is_echo", headerName: "Echo", type: "boolean", flex: 0.4 },
-    { field: "is_ecg", headerName: "ECG", type: "boolean", flex: 0.4 },
-    { field: "is_ct", headerName: "CT", type: "boolean", flex: 0.2 },
+    {
+      field: "clinic_no",
+      headerName: "Clinic Number",
+      type: "string",
+      flex: 1
+    },
+    { field: "phone_no", headerName: "Phone Number", type: "string", flex: 1 },
+    { field: "visit_no", headerName: "Visit Number", type: "string", flex: 1 },
     {
       field: 'action',
       headerName: 'Action',
-      flex: 2.5,
+      flex: 1,
       disableClickEventBubbling: true,
 
       renderCell: (params) => {
@@ -55,7 +42,7 @@ export default function Theatre() {
           e.stopPropagation();
           const currentRow = params.row;
           if (id === 'edit') {
-            navigate(`/user/theatre/edit/${currentRow.bht_no}`);
+            navigate(`/user/clinic/edit/${currentRow.clinic_no}`);
           } else if (id === 'delete') {
             setOpen(true);
             setSelectedRow(currentRow);
@@ -84,55 +71,44 @@ export default function Theatre() {
     if (action === 'cancel') {
       setOpen(false);
     } else {
-      deleteTheatre(selectedRow.bht_no);
+      deleteClinic(selectedRow.clinic_no);
       setOpen(false);
     }
   }
 
-  const getTheatres = async () => {
-    const response = await fetch("http://localhost:5000/theatre");
+  const getClinics = async () => {
+    const response = await fetch("http://localhost:5000/clinics");
     const data = await response.json();
     setRows(formatRows(data));
   };
 
 
-  const deleteTheatre = async (id) => {
-    const response = await fetch(`http://localhost:5000/theatre/${id}`, {
+  const deleteClinic = async (id) => {
+    const response = await fetch(`http://localhost:5000/clinics/${id}`, {
       method: 'DELETE',
     });
     const data = await response.json();
     console.log(data);
-    getTheatres();
+    getClinics();
     handleClose();
   };
 
   const formatRows = (data) => {
-    return data.map((theatre) => {
+    return data.map((clinic) => {
       return {
-        id: theatre.bht_no,
-        date: theatre.date,
-        patient_name: theatre.patient_name,
-        ward_no: theatre.ward_no,
-        age: theatre.age,
-        bht_no: theatre.bht_no,
-        gender: theatre.gender,
-        surgery: theatre.surgery,
-        con_surgeon: theatre.con_surgeon,
-        con_anesthetic: theatre.con_anesthetic,
-        theatre_no: theatre.theatre_no,
-        clinic_number: theatre.clinic_number,
-        is_pcr: theatre.is_pcr,
-        is_rat: theatre.is_rat,
-        is_fasting: theatre.is_fasting,
-        is_echo: theatre.is_echo,
-        is_ecg: theatre.is_ecg,
-        is_ct: theatre.is_ct
+        id: clinic.clinic_no,
+        date: clinic.date,
+        patient_name: clinic.patient_name,
+        age: clinic.age,
+        clinic_no: clinic.clinic_no,
+        phone_no: clinic.phone_no,
+        visit_no: clinic.visit_no,
       }
     })
   };
 
   useEffect(() => {
-    getTheatres();
+    getClinics();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -142,8 +118,8 @@ export default function Theatre() {
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-              T
+            <Avatar sx={{ bgcolor: "#834bff" }} aria-label="recipe">
+              C
             </Avatar>
           }
           action={
@@ -151,14 +127,14 @@ export default function Theatre() {
               <MoreVertIcon />
             </IconButton>
           }
-          title= "UHKDU Theatre Details-"
+          title= "Enter Clinic Details-"
         />
         <CardContent>
-          <CreateTheatreForm />
+          <CreateClinicForm />
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} title='5678' />
+        <DataTable rows={rows} columns={columns} title='Clinic Patient Details- ' />
       )}
 
       <Dialog

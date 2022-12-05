@@ -42,7 +42,7 @@ export default function EditEndoscopyForm(props) {
       case "procedure":
         setProcedure(value.target.value);
         break;
-      case "phone_no":
+      case "phone_number":
         setPhoneNumber(value.target.value);
         break;
       case "consultant":
@@ -53,6 +53,12 @@ export default function EditEndoscopyForm(props) {
     }
   };
   const handleSubmit = async (e) => {
+    if(bhtNumber == '') return;
+    if(patientName == '') return;
+    if(age == '') return;
+    if(procedure == '') return;
+    if(phoneNumber == '') return;
+    if(consultant == '') return;
     e.preventDefault();
     EditEndoscopy(e);
   };
@@ -113,6 +119,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {bhtNumber==''}
               id="bht_number"
               name="bht_number"
               label="BHT Number"
@@ -126,6 +133,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {patientName ==''}
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -139,6 +147,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {age ==''}
               id="age"
               name="age"
               label="Age"
@@ -153,6 +162,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {procedure ==''}
               id="procedure"
               name="procedure"
               label="Procedure"
@@ -166,6 +176,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {phoneNumber ==''}
               id="phone_number"
               name="phone_number"
               label="Phone Number"
@@ -180,6 +191,7 @@ export default function EditEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {consultant ==''}
               id="consultant"
               name="consultant"
               label="Consultant"

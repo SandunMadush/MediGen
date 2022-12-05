@@ -7,22 +7,15 @@ import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
-export default function EditClinicForm(props) {
-  let { id } = useParams();
-
-  useEffect(() => {
-    setClinic();
-  }, []);
+export default function CreateClinicForm(props) {
 
   const [date, setDate] = React.useState(dayjs(new Date()));
-  const [patientName, setPatientName] = React.useState(props?.patient_name);
-  const [clinicNumber, setClinicNumber] = React.useState(props?.bht_no);
-  const [age, setAge] = React.useState(props?.age);
-  const [phoneNumber, setPhoneNumber] = React.useState(props?.gender);
-  const [visitNumber, setVisitNumber] = React.useState(props?.con_surgeon);
+  const [patientName, setPatientName] = React.useState(props.patient_name);
+  const [clinicNumber, setClinicNumber] = React.useState(props.clinic_no);
+  const [age, setAge] = React.useState(props.age);
+  const [phoneNumber, setPhoneNumber] = React.useState(props.phone_no);
+  const [visitNumber, setVisitNumber] = React.useState(props.visit_no);
 
   const handleChange = (id, value) => {
     switch (id) {
@@ -50,23 +43,18 @@ export default function EditClinicForm(props) {
   };
 
   const handleSubmit = async (e) => {
+    if(patientName == '') return;
+    if(age == '') return;
+    if(clinicNumber == '') return;
+    if(phoneNumber == '') return;
+    if(visitNumber == '') return;
     e.preventDefault();
-    editClinic(e);
+    createClinic(e);
   };
 
-  const setClinic = async () => {
-    const res = await fetch(`http://localhost:5000/clinics/${id}`);
-    const data = await res.json();
-    setClinicNumber(data[0].clinic_no);
-    setPatientName(data[0].patient_name);
-    setAge(data[0].age);
-    setPhoneNumber(data[0].phone_no);
-    setVisitNumber(data[0].visit_no);
-  };
-
-  const editClinic = async (e) => {
+  const createClinic = async (e) => {
     e.preventDefault();
-    const clinic = {
+    const Clinic = {
       date,
       patient_name: patientName,
       clinic_no: clinicNumber,
@@ -74,16 +62,16 @@ export default function EditClinicForm(props) {
       phone_no: phoneNumber,
       visit_no: visitNumber,
     };
-    const res = await fetch(`http://localhost:5000/clinics/${clinicNumber}`, {
-      method: "PUT",
+    const res = await fetch("http://localhost:5000/clinics", {
+      method: "POST",
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify(clinic),
+      body: JSON.stringify(Clinic),
     });
     const data = await res.json();
     if (data) {
-      alert("Clinic updated successfully");
+      alert("Clinic created successfully");
     }
   };
 
@@ -99,7 +87,7 @@ export default function EditClinicForm(props) {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={date ? date : new Date()}
+              value={date}
               onChange={(event) => handleChange("date", event)}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />
@@ -107,6 +95,7 @@ export default function EditClinicForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {patientName ==''}
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -120,6 +109,7 @@ export default function EditClinicForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {age ==''}
               id="age"
               name="age"
               label="Age"
@@ -135,6 +125,7 @@ export default function EditClinicForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {clinicNumber ==''}
               id="clinic_number"
               name="clinic_number"
               label="Clinic Number"
@@ -149,6 +140,7 @@ export default function EditClinicForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {phoneNumber ==''}
               id="phone_number"
               name="phone_number"
               label="Phone Number"
@@ -163,6 +155,7 @@ export default function EditClinicForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {visitNumber ==''}
               id="visit_number"
               name="visit_number"
               label="Visit Number"
@@ -185,6 +178,5 @@ export default function EditClinicForm(props) {
         </Grid>
       </LocalizationProvider>
     </React.Fragment>
-
   );
 }

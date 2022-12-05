@@ -4,7 +4,7 @@ import { Avatar, Button, Card, CardContent, CardHeader, Dialog, DialogActions, D
 import { Delete, Edit } from "@mui/icons-material";
 
 import CreateEndoscopyForm from "./CreateEndoscopy";
-import { DataTable } from "../../shared/Datatable";
+import { DataTable } from "../../../shared/Datatable";
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { blue, red } from "@mui/material/colors";
 import { useEffect } from "react";
@@ -121,7 +121,7 @@ export default function Endoscopy() {
       <Card sx={{ minWidth: 275 }}>
         <CardHeader
           avatar={
-            <Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
+            <Avatar sx={{ bgcolor: "#6fbf73" }} aria-label="recipe">
               E
             </Avatar>
           }
@@ -130,14 +130,14 @@ export default function Endoscopy() {
               <MoreVertIcon />
             </IconButton>
           }
-          title="UHKDU Endoscopy Details-"
+          title="Enter Endoscopy Details-"
         />
         <CardContent>
           <CreateEndoscopyForm />
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} title='15475' />
+        <DataTable rows={rows} columns={columns} title='Endoscopy Patient Details-' />
       )}
 
       <Dialog

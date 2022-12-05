@@ -2,131 +2,113 @@ import * as React from "react";
 
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import Button from "@mui/material/Button";
+import Checkbox from "@mui/material/Checkbox";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import Grid from "@mui/material/Grid";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import TextField from "@mui/material/TextField";
 import dayjs from "dayjs";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Checkbox from "@mui/material/Checkbox";
-import FormControlLabel from "@mui/material/FormControlLabel";
 
-export default function EditTheatreForm(props) {
-  let { id } = useParams();
-
-  useEffect(() => {
-    setTheatre();
-  }, []);
-
+export default function CreateTheatreForm(props) {
   const [date, setDate] = React.useState(dayjs(new Date()));
-  const [patientName, setPatientName] = React.useState(props?.patient_name);
-  const [bhtNumber, setBhtNumber] = React.useState(props?.bht_no);
-  const [wardNumber, setWardNumber] = React.useState(props?.ward_no);
-  const [age, setAge] = React.useState(props?.age);
-  const [gender, setGender] = React.useState(props?.gender);
-  const [surgery, setSurgery] = React.useState(props?.surgery);
-  const [conSurgeon, setConSurgeon] = React.useState(props?.con_surgeon);
+  const [patientName, setPatientName] = React.useState(props.patient_name);
+  const [bhtNumber, setBhtNumber] = React.useState(props.bht_no);
+  const [wardNumber, setWardNumber] = React.useState(props.ward_no);
+  const [age, setAge] = React.useState(props.age);
+  const [gender, setGender] = React.useState(props.gender);
+  const [surgery, setSurgery] = React.useState(props.surgery);
+  const [conSurgeon, setConSurgeon] = React.useState(props.con_surgeon);
   const [conAnesthetic, setConAnesthetic] = React.useState(
-    props?.con_anesthetic
+    props.con_anesthetic
   );
-  const [theatreNumber, setTheatreNumber] = React.useState(props?.theatre_no);
+  const [theatreNumber, setTheatreNumber] = React.useState(props.theatre_no);
   const [isPcr, setIsPcr] = React.useState(false);
   const [isRAT, setIsRat] = React.useState(false);
   const [isFasting, setIsFasting] = React.useState(false);
   const [isEcho, setIsEcho] = React.useState(false);
   const [isEcg, setIsEcg] = React.useState(false);
   const [isCt, setIsCt] = React.useState(false);
-  const [clinicNumber, setClinicNumber] = React.useState(props?.clinic_number);
+  const [clinicNumber, setClinicNumber] = React.useState(props.clinic_number);
 
   const handleChange = (id, value) => {
+
     switch (id) {
-        case "date":
-            setDate(value);
-            break;
-          case "patient_name":
-            setPatientName(value.target.value);
-            break;
-          case "bht_number":
-            setBhtNumber(value.target.value);
-            break;
-          case "ward_number":
-            setWardNumber(value.target.value);
-            break;
-          case "age":
-            setAge(value.target.value);
-            break;
-          case "gender":
-            setGender(value.target.value);
-            break;
-          case "surgery":
-            setSurgery(value.target.value);
-            break;
-          case "con_surgeon":
-            setConSurgeon(value.target.value);
-            break;
-          case "con_anesthetic":
-            setConAnesthetic(value.target.value);
-            break;
-          case "theatre_number":
-            setTheatreNumber(value.target.value);
-            break;
-          case "isPcr":
-            setIsPcr(value.target.checked);
-            break;
-          case "isRat":
-            setIsRat(value.target.checked);
-            break;
-          case "isFasting":
-            setIsFasting(value.target.checked);
-            break;
-          case "isEcho":
-            setIsEcho(value.target.checked);
-            break;
-          case "isEcg":
-            setIsEcg(value.target.checked);
-            break;
-          case "isCt":
-            setIsCt(value.target.checked);
-            break;
-          case "clinic_number":
-            setClinicNumber(value.target.value);
-            break;
-          default:
-            break;
+      case "date":
+        setDate(value);
+        break;
+      case "patient_name":
+        setPatientName(value.target.value);
+        break;
+      case "bht_number":
+        setBhtNumber(value.target.value);
+        break;
+      case "ward_number":
+        setWardNumber(value.target.value);
+        break;
+      case "age":
+        setAge(value.target.value);
+        break;
+      case "gender":
+        setGender(value.target.value);
+        break;
+      case "surgery":
+        setSurgery(value.target.value);
+        break;
+      case "con_surgeon":
+        setConSurgeon(value.target.value);
+        break;
+      case "con_anesthetic":
+        setConAnesthetic(value.target.value);
+        break;
+      case "theatre_number":
+        setTheatreNumber(value.target.value);
+        break;
+      case "isPcr":
+        setIsPcr(value.target.checked);
+        break;
+      case "isRat":
+        setIsRat(value.target.checked);
+        break;
+      case "isFasting":
+        setIsFasting(value.target.checked);
+        break;
+      case "isEcho":
+        setIsEcho(value.target.checked);
+        break;
+      case "isEcg":
+        setIsEcg(value.target.checked);
+        break;
+      case "isCt":
+        setIsCt(value.target.checked);
+        break;
+      case "clinic_number":
+        setClinicNumber(value.target.value);
+        break;
+      default:
+        break;
     }
   };
+
   const handleSubmit = async (e) => {
+    if(patientName == '') return;
+    if(bhtNumber == '') return;
+    if(wardNumber == '') return;
+    if(age == '') return;
+    if(gender == '') return;
+    if(surgery == '') return;
+    if(conSurgeon == '') return;
+    if(conAnesthetic == '') return;
+    if(theatreNumber == '') return;
+    if(clinicNumber == '') return;
     e.preventDefault();
-    EditTheatre(e);
+    createTheatre(e);
+    console.log('click')
   };
 
-  const setTheatre = async () => {
-    const res = await fetch(`http://localhost:5000/theatre/${id}`);
-    const data = await res.json();
-    setBhtNumber(data[0].bht_no);
-    setPatientName(data[0].patient_name);
-    setBhtNumber(data[0].bht_no);
-    setWardNumber(data[0].ward_no);
-    setAge(data[0].age);
-    setGender(data[0].gender);
-    setSurgery(data[0].surgery);
-    setConSurgeon(data[0].con_surgeon);
-    setConAnesthetic(data[0].con_anesthetic);
-    setTheatreNumber(data[0].theatre_no);
-    setIsPcr(data[0].is_pcr);
-    setIsRat(data[0].is_rat);
-    setIsEcg(data[0].is_ecg);
-    setIsFasting(data[0].is_fasting);
-    setIsEcho(data[0].is_echo);
-    setIsEcg(data[0].is_ecg);
-    setIsCt(data[0].is_ct);
-    setClinicNumber(data[0].clinic_number);
-    
-  };
-
-  const EditTheatre = async (e) => {
+  const createTheatre = async (e) => {
     e.preventDefault();
+    console.log('create')
     const theatre = {
       date,
       patient_name: patientName,
@@ -146,16 +128,18 @@ export default function EditTheatreForm(props) {
       is_ct: isCt,
       clinic_number: clinicNumber,
     };
-    const res = await fetch(`http://localhost:5000/theatre/${bhtNumber}`, {
-      method: "PUT",
+    console.log(theatre)
+    const res = await fetch("http://localhost:5000/theatre", {
+      method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(theatre),
     });
     const data = await res.json();
+    console.log(data)
     if (data) {
-      alert("Details updated successfully");
+      alert("Theatre created successfully");
     }
   };
 
@@ -172,7 +156,7 @@ export default function EditTheatreForm(props) {
               autoComplete="given-name"
               variant="outlined"
               inputFormat="DD/MM/YYYY"
-              value={date  ? date : new Date()}
+              value={date}
               onChange={(event) => handleChange("date", event)}
               renderInput={(params) => <TextField {...params} fullWidth />}
             />
@@ -180,6 +164,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {patientName==''}
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -193,6 +178,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {bhtNumber==''}
               id="bht_number"
               name="bht_number"
               label="BHT Number"
@@ -206,6 +192,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {wardNumber==''}
               id="ward_number"
               name="ward_number"
               label="Ward Number"
@@ -220,6 +207,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {age==''}
               id="age"
               name="age"
               label="Age"
@@ -233,6 +221,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {gender==''}
               id="gender"
               name="gender"
               label="Gender" 
@@ -246,6 +235,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {surgery==''}
               id="surgery"
               name="surgery"
               label="Surgery"
@@ -259,6 +249,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {conSurgeon==''}
               id="con_surgeon"
               name="con_surgeon"
               label="Conducted Surgeon"
@@ -273,6 +264,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {conAnesthetic==''}
               id="con_anaesthetic"
               name="con_anaesthetic"
               label="Conducted Anaesthetic"
@@ -286,6 +278,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {theatreNumber==''}
               id="theatre_number"
               name="theatre_number"
               label="Theatre Number"
@@ -299,6 +292,7 @@ export default function EditTheatreForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {clinicNumber==''}
               id="clinic_number"
               name="clinic_number"
               label="Clinic Number"

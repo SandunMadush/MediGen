@@ -49,6 +49,11 @@ export default function CreateEndoscopyForm(props) {
 
   const handleSubmit = async (e) => {
     if(bhtNumber == '') return;
+    if(patientName == '') return;
+    if(age == '') return;
+    if(procedure == '') return;
+    if(phoneNumber == '') return;
+    if(consultant == '') return;
     e.preventDefault();
     createEndoscopy(e);
 
@@ -105,6 +110,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {patientName ==''}
               id="patient_name"
               name="patient_name"
               label="Patient Name"
@@ -118,6 +124,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {age ==''}
               id="age"
               name="age"
               label="Age"
@@ -131,6 +138,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {procedure ==''}
               id="procedure"
               name="procedure"
               label="Procedure"
@@ -145,6 +153,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {phoneNumber ==''}
               id="phone_number"
               name="phone_number"
               label="Phone Number"
@@ -159,6 +168,7 @@ export default function CreateEndoscopyForm(props) {
           <Grid item xs={12} sm={6}>
             <TextField
               required
+              error = {consultant ==''}
               id="consultant"
               name="consultant"
               label="Consultant"
