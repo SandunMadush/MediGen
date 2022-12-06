@@ -31,13 +31,13 @@ export default function Theatre() {
       flex: 0.5
     },
     
-    // { field: "gender", headerName: "Gender", type: "string", flex: 1, show: false },
-    // { field: "surgery", headerName: "Surgery", type: "string", flex: 1 },
+    //{ field: "gender", headerName: "Gender", type: "string", flex: 1, show: false },
+   // { field: "surgery", headerName: "Surgery", type: "string", flex: 1 },
 
     { field: "con_surgeon", headerName: "Con Surgeon", type: "string", flex: 2 },
-    // { field: "con_anesthetic", headerName: "Con Anesthetic", type: "string", flex: 1 },
-    { field: "theatre_no", headerName: "Theatre Number", type: "string", flex: 2.2 },
-    // { field: "clinic_number", headerName: "Clinic Number", type: "string", flex: 1 },
+   // { field: "con_anesthetic", headerName: "Con Anesthetic", type: "string", flex: 1 },
+    //{ field: "theatre_no", headerName: "Theatre Number", type: "string", flex: 2.2 },
+    //{ field: "clinic_number", headerName: "Clinic Number", type: "string", flex: 1 },
     { field: "is_pcr", headerName: "PCR", type: "boolean", flex: 0.4 },
     { field: "is_rat", headerName: "RAT", type: "boolean", flex: 0.4 },
     { field: "is_fasting", headerName: "Fasting", type: "boolean", flex: 1.2 },

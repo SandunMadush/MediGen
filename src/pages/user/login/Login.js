@@ -7,8 +7,15 @@ import Button from "@mui/material/Button";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../assets/kdu.png";
+import uhkdu from "../../../images/uhkdu.jpg";
 
 const Login = () => {
+  const styles = {
+    paperContainer: {
+      background: `url(${uhkdu})  no-repeat center center fixed`,
+      'background-size': 'cover'
+    },
+  };
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -47,65 +54,65 @@ const Login = () => {
   let navigate = useNavigate();
 
   return (
-    <Grid
-      container
-      spacing={0}
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: "100vh" }}
-    >
-      <Paper elevation={10} style={paperStyle} align="center">
-        <Grid align="center">
-          <Avatar style={avatarStyle} sx={{ width: 56, height: 56 }}>
-            <LoginIcon />
-          </Avatar>
-          <h2>Login</h2>
-        </Grid>
-        <form onSubmit={Auth} align="center">
-          <TextField
-            id="username"
-            label="Username"
-            variant="outlined"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            id="password"
-            label="Password"
-            variant="outlined"
-            style={tboxstyle}
-            placeholder="Enter password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+    <div style={styles.paperContainer}>
+      <Grid
+        container
+        spacing={0}
+        alignItems="center"
+        justifyContent="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Paper elevation={10} style={paperStyle} align="center">
+          <Grid align="center">
+            <Avatar style={avatarStyle} sx={{ width: 56, height: 56 }}>
+              <LoginIcon />
+            </Avatar>
+            <h2>Login</h2>
+          </Grid>
+          <form onSubmit={Auth} align="center">
+            <TextField
+              id="username"
+              label="Username"
+              variant="outlined"
+              placeholder="Enter username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <TextField
+              id="password"
+              label="Password"
+              variant="outlined"
+              style={tboxstyle}
+              placeholder="Enter password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-          
+            <Button
+              variant="contained"
+              type="submit"
+              color="primary"
+              style={btnstyle}
+              fullWidth
+            >
+              Login
+            </Button>
+          </form>
 
-          <Button
-            variant="contained"
-            type="submit"
-            color="primary"
-            style={btnstyle}
-            fullWidth
-          >
-            Login
-          </Button>
-        </form>
+          <Box
+            sx={{
+              typography: "body1",
+              "& > :not(style) + :not(style)": {
+                ml: 2,
+              },
+            }}
+          ></Box>
 
-        <Box
-          sx={{
-            typography: "body1",
-            "& > :not(style) + :not(style)": {
-              ml: 2,
-            },
-          }}
-        >
-        </Box>
-        <img  src={logo} style={imgstyle} alt="logo" />
-      </Paper>
-    </Grid>
+          <img src={logo} style={imgstyle} alt="logo" />
+        </Paper>
+      </Grid>
+    </div>
   );
 };
 
