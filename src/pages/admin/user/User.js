@@ -115,7 +115,7 @@ export default function User() {
         </CardContent>
       </Card>
       {rows.length > 0 && (
-        <DataTable rows={rows} columns={columns} title='1324' />
+        <DataTable rows={rows} columns={columns} title='ALL ACCOUNTS' />
       )}
 
       <Dialog
